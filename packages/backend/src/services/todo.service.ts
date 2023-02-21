@@ -5,6 +5,8 @@ export default class TodoService implements ITodoServices {
   async findAll(): Promise<ITodo[]> {
     const result = await Todo.find();
 
+    console.log(result);
+
     return result;
   }
 

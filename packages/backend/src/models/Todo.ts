@@ -20,6 +20,6 @@ const todoSchema: Schema<ITodo> = new Schema({
   }
 });
 
-const Todo: Model<ITodo> = model<ITodo>('todo', todoSchema);
+const Todo: Model<ITodo> = model<ITodo>('Todo', todoSchema);
 
 export default Todo;

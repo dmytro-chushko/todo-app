@@ -5,9 +5,13 @@ export class TodoController {
   constructor(private todoService: TodoService) {}
 
   async getAllTodo(_: Request, res: Response) {
-    // TODO: Write your implementation here
     const todos = await this.todoService.findAll();
-    res.send(todos);
+
+    res.json({
+      status: 'success',
+      code: 200,
+      data: { result: todos }
+    });
   }
 }
 
