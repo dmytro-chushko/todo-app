@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { Document } from 'mongoose';
 
 export interface ITodo extends Document {
@@ -17,6 +17,6 @@ export interface ITodoServices {
 }
 
 export interface ITodoControllers {
-  getAllTodo(_: Request, res: Response): Promise<void>;
-  getTodoById(req: Request, res: Response): Promise<void>;
+  getAllTodo(): Promise<ITodo[]>;
+  getTodoById(req: Request): Promise<ITodo>;
 }

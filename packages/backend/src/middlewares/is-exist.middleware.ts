@@ -1,23 +1,19 @@
 import { Response, Request, NextFunction } from 'express';
-import TodoService from '../services/todo.service';
+import { Model } from 'mongoose';
 
-export class IsExist {
-  constructor(private todoService: TodoService) {}
-
-  async findTodo(req: Request, res: Response, next: NextFunction) {
+export const isExistMiddleware =
+  <T>(model: Model<T>) =>
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const todo = await this.todoService.findById(id);
+      const searchResult = await model.findById(id);
 
-      if (!todo) throw new Error();
+      if (!searchResult) throw new Error();
 
-      req.todo = todo;
+      req.searchResult = searchResult;
 
       next();
     } catch (error) {
-      return res.status(400).json({ massage: 'Todo not exist' });
+      return res.status(400).json({ massage: 'entity not exist in database' });
     }
-  }
-}
-
-export const isExist = new IsExist(new TodoService());
+  };

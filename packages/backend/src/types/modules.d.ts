@@ -1,5 +1,3 @@
-import { ITodo } from './todos.type';
-
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
@@ -10,8 +8,8 @@ declare global {
   }
 
   namespace Express {
-    interface Request {
-      todo: ITodo;
+    interface Request<T = any> {
+      searchResult: T;
     }
   }
 }

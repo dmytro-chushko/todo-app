@@ -1,2 +1,2 @@
-export { tryCathWrapper } from './try-cath.middleware';
-export { isExist } from './is-exist.middleware';
+export { tryCathMiddleware } from './try-cath.middleware';
+export { isExistMiddleware } from './is-exist.middleware';
