@@ -28,4 +28,10 @@ todosRouter.put(
   tryCathMiddleware(todoController.updateTodo.bind(todoController))
 );
 
+todosRouter.delete(
+  '/:id',
+  isExistMiddleware<ITodo>(Todo),
+  tryCathMiddleware(todoController.removeTodo.bind(todoController))
+);
+
 export default todosRouter;

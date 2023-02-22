@@ -26,6 +26,12 @@ export class TodoController implements ITodoControllers {
 
     return updatedTodo;
   }
+
+  async removeTodo(req: Request): Promise<ITodo | null> {
+    const deletedTodo = await this.todoService.removeById(req.searchResult._id);
+
+    return deletedTodo;
+  }
 }
 
 const todoController = new TodoController(new TodoService());
