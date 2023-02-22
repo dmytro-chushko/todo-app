@@ -3,15 +3,15 @@ import { ITodo, ITodoServices } from '../types/todos.type';
 
 export default class TodoService implements ITodoServices {
   async findAll(): Promise<ITodo[]> {
-    const result = await Todo.find();
+    const todos = await Todo.find();
 
-    return result;
+    return todos;
   }
 
   async findById(id: string): Promise<ITodo | null> {
-    const result = await Todo.findById(id);
+    const todo = await Todo.findById(id);
 
-    return result;
+    return todo;
   }
 
   async create(body: ITodo): Promise<ITodo> {

@@ -17,13 +17,13 @@ todosRouter.get(
 
 todosRouter.post(
   '',
-  validationMiddleware(createTodoSchema),
+  validationMiddleware<ITodo>(createTodoSchema),
   tryCathMiddleware(todoController.createTodo.bind(todoController))
 );
 
 todosRouter.put(
   '/:id',
-  validationMiddleware(updateTodoSchema),
+  validationMiddleware<ITodo>(updateTodoSchema),
   isExistMiddleware<ITodo>(Todo),
   tryCathMiddleware(todoController.updateTodo.bind(todoController))
 );

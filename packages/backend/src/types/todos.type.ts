@@ -18,7 +18,8 @@ export interface ITodoServices {
 
 export interface ITodoControllers {
   getAllTodo(): Promise<ITodo[]>;
-  getTodoById(req: Request): Promise<ITodo>;
+  getTodoById(req: Request): Promise<ITodo | null>;
   createTodo(req: Request): Promise<ITodo>;
   updateTodo(req: Request): Promise<ITodo | null>;
+  removeTodo(req: Request): Promise<ITodo | null>;
 }

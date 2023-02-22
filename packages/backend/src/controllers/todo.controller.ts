@@ -1,6 +1,6 @@
-import { Request } from 'express';
-import { ITodo, ITodoControllers } from '../types/todos.type';
 import TodoService from '../services/todo.service';
+import { ITodo, ITodoControllers } from '../types/todos.type';
+import { CustomRequest } from '../types/request.type';
 
 export class TodoController implements ITodoControllers {
   constructor(private todoService: TodoService) {}
@@ -11,24 +11,26 @@ export class TodoController implements ITodoControllers {
     return todos;
   }
 
-  async getTodoById(req: Request): Promise<ITodo> {
-    return req.searchResult;
+  async getTodoById(req: CustomRequest<ITodo>): Promise<ITodo | null> {
+    const todo = await this.todoService.findById(req.params.id);
+
+    return todo;
   }
 
-  async createTodo(req: Request): Promise<ITodo> {
+  async createTodo(req: CustomRequest<ITodo>): Promise<ITodo> {
     const createdTodo = await this.todoService.create(req.body);
 
     return createdTodo;
   }
 
-  async updateTodo(req: Request): Promise<ITodo | null> {
-    const updatedTodo = await this.todoService.updateById(req.searchResult._id, req.body);
+  async updateTodo(req: CustomRequest<ITodo>): Promise<ITodo | null> {
+    const updatedTodo = await this.todoService.updateById(req.params.id, req.body);
 
     return updatedTodo;
   }
 
-  async removeTodo(req: Request): Promise<ITodo | null> {
-    const deletedTodo = await this.todoService.removeById(req.searchResult._id);
+  async removeTodo(req: CustomRequest<ITodo>): Promise<ITodo | null> {
+    const deletedTodo = await this.todoService.removeById(req.params.id);
 
     return deletedTodo;
   }
