@@ -6,7 +6,7 @@ const todoSchema: Schema<ITodo> = new Schema({
     type: String,
     required: [true, 'Title is required']
   },
-  descriprtion: {
+  description: {
     type: String,
     required: [true, 'Description is required']
   },

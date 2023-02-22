@@ -27,7 +27,7 @@ export default class TodoService implements ITodoServices {
   }
 
   async updateById(id: string, body: ITodo): Promise<ITodo | null> {
-    const updatedTodo = await Todo.findByIdAndUpdate(id, body);
+    const updatedTodo = await Todo.findOneAndUpdate({ _id: id }, body, { new: true });
 
     return updatedTodo;
   }
