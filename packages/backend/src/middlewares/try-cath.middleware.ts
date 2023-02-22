@@ -1,11 +1,9 @@
-import { Response, Request, NextFunction } from 'express';
+import { Response, Request, NextFunction, RequestHandler } from 'express';
 
-type Handler = (res: Response, req: Request, next: NextFunction) => Promise<void>;
-
-export const controllerWrapper =
-  (handler: Handler) => async (res: Response, req: Request, next: NextFunction) => {
+export const tryCathWrapper =
+  (handler: RequestHandler) => async (req: Request, res: Response, next: NextFunction) => {
     try {
-      await handler(res, req, next);
+      await handler(req, res, next);
     } catch (error) {
       next(error);
     }

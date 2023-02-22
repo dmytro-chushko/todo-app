@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { Document } from 'mongoose';
 
 export interface ITodo extends Document {
@@ -13,4 +14,9 @@ export interface ITodoServices {
   create(body: ITodo): Promise<ITodo | null>;
   removeById(id: string): Promise<ITodo | null>;
   updateById(id: string, body: ITodo): Promise<ITodo | null>;
+}
+
+export interface ITodoControllers {
+  getAllTodo(_: Request, res: Response): Promise<void>;
+  getTodoById(req: Request, res: Response): Promise<void>;
 }
