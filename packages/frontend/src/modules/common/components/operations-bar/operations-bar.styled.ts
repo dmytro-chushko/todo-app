@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { SPACES } from '../../../theme';
 
-export const HeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const OperatoionsContainer = styled.div`
   padding: ${SPACES.m} 0;
 `;

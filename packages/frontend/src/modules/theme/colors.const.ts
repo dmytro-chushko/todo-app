@@ -4,6 +4,6 @@ export const COLORS = {
   black: '#2B2B2B',
   primary: '#bbb2e9',
   secondary: '#808080',
-  buttonColor: '#4a45e6',
+  buttonColor: '#1976d2',
   hoverButtonColor: '#1d1aeb'
 };

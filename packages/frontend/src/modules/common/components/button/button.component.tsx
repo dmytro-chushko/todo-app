@@ -7,8 +7,7 @@ interface IButtonProps {
   children: React.ReactNode;
 }
 
-const Button = ({ header, children }: IButtonProps) => {
-  return <Styled.Button header={header}>{children}</Styled.Button>;
-};
-
+const Button = ({ header, children }: IButtonProps) => (
+  <Styled.Button header={header}>{children}</Styled.Button>
+);
 export default Button;
