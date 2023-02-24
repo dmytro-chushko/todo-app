@@ -4,5 +4,6 @@ import { SPACES } from '../../../theme';
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: ${SPACES.m} 0;
+  padding-top: ${SPACES.m};
+  padding-bottom: ${SPACES.s};
 `;

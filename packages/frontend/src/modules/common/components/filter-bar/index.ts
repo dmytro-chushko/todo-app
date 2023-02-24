@@ -1,2 +1,2 @@
-export * from './filter-bar.component';
+export { default } from './filter-bar.component';
 export * from './filter-bar.styled';
