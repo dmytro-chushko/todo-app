@@ -1,10 +1,10 @@
 import React from 'react';
-import FilterBar from '../filter-bar/filter-bar.component';
-import SearchField from '../search-field/search-field.component';
+import { FilterBar } from '../filter-bar';
+import { SearchField } from '../search-field';
 
 import * as Styled from './operations-bar.styled';
 
-const OperationsBar = () => (
+export const OperationsBar = () => (
   <Styled.OperatoionsContainer>
     <SearchField />
     <FilterBar />

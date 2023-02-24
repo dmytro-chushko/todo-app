@@ -1,11 +1,11 @@
 import React from 'react';
-import TodoCard from '../todo-card/todo-card.component';
-import useTodoCard from './todo-container.hook';
+import { TodoCard } from '../todo-card';
+import { useTodoApi } from '../../hooks/todo-api.hook';
 
 import * as Styled from './todo-container.styled';
 
-const TodoContainer = () => {
-  const { data } = useTodoCard();
+export const TodoContainer = () => {
+  const { data } = useTodoApi();
 
   return (
     <Styled.TodoCardList>

@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import * as Styled from './search-fild.styled';
 
-const SearchField = () => (
+export const SearchField = () => (
   <Styled.SearchFieldContainer>
     <TextField
       id="input-with-icon-textfield"

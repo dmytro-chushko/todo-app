@@ -1,12 +1,26 @@
 import styled from 'styled-components';
 import { COLORS } from '../../../theme';
+import { ButtonPurpose } from './types';
 
 interface IButton {
-  header?: boolean;
+  purpose?: ButtonPurpose;
 }
 
 export const Button = styled.button<IButton>`
-  width: ${({ header }) => (header ? '35%' : '20%')};
+  width: ${({ purpose }) => {
+    switch (purpose) {
+      case 'header':
+        return '35%';
+      case 'card':
+        return '70px';
+      case 'icon':
+        return '35px';
+      default:
+        return 'auto';
+    }
+  }};
+  height: 35px;
+  line-height: 0;
   background-color: ${COLORS.buttonColor};
   border: none;
   border-radius: 5px;

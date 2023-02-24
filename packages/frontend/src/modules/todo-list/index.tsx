@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from '@mui/material';
-import Header from '../../common/components/header/header.component';
-import OperationsBar from '../../common/components/operations-bar/operations-bar.component';
-import TodoContainer from '../../common/components/todo-container';
+import { Header } from './components/header';
+import { OperationsBar } from './components/operations-bar';
+import { TodoContainer } from './components/todo-container';
 
 const TodoPageContainer = () => (
   <Container>
