@@ -5,12 +5,19 @@ import { Button } from '../../../common/components/button';
 
 import * as Styled from './search-fild.styled';
 
-export const SearchField = () => (
+interface ISearchFieldProps {
+  searchTerm: string;
+  setSearchTernm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchField = ({ searchTerm, setSearchTernm }: ISearchFieldProps) => (
   <Styled.SearchFieldContainer>
     <Styled.SearchInput
       id="input-with-icon-textfield"
       label="Search"
       size="small"
+      value={searchTerm}
+      onChange={(e) => setSearchTernm(e.target.value)}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

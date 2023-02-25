@@ -3,14 +3,20 @@ import { TodoCard } from '../todo-card';
 import { useGetTodo } from '../../hooks/get-todo.hook';
 
 import * as Styled from './todo-container.styled';
+import { useSearch } from '../../hooks/useSearch.hook';
 
-export const TodoContainer = () => {
+interface ITodoContainer {
+  searchTerm: string;
+}
+
+export const TodoContainer = ({ searchTerm }: ITodoContainer) => {
   const { data } = useGetTodo();
+  const searchedData = useSearch({ data, searchTerm });
 
   return (
     <Styled.TodoCardList>
-      {data &&
-        data.map(({ _id, title, description, isCompleted }) => (
+      {searchedData &&
+        searchedData.map(({ _id, title, description, isCompleted }) => (
           <TodoCard
             key={_id}
             id={_id}

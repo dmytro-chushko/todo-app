@@ -7,6 +7,7 @@ export const TodoTitle = styled.h2`
 `;
 
 export const TodoDescription = styled.p`
+  margin-bottom: ${SPACES.m};
   font-size: ${FONTS.SIZES.mobileDescription};
   color: ${COLORS.secondary};
 `;
