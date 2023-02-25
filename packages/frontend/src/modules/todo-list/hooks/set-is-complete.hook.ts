@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 import { QUERY_KEYS } from '../../common/consts/app-keys.const';
 import { queryClient } from '../../react-query/qeury-client';
 import TodoService from '../../services/todo.service';
+import { errorHandler } from '../helpers/error-hendler';
 
 interface IUseSetIsComplete {
   handleSwitch: () => void;
@@ -18,16 +21,22 @@ export const useSetIsComplete = ({
   isCompleted
 }: IUseSetIsCompleteParams): IUseSetIsComplete => {
   const todoService = new TodoService();
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading, isSuccess, isError, error } = useMutation({
     mutationFn: todoService.setIsComplete.bind(todoService),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODO] });
     }
   });
 
-  const handleSwitch = async () => {
-    await mutate({ id, isCompleted: !isCompleted });
+  const handleSwitch = () => {
+    mutate({ id, isCompleted: !isCompleted });
   };
+
+  useEffect(() => {
+    if (isSuccess) toast.success(`Your task has been ${isCompleted ? 'completed' : 'started'}`);
+
+    if (isError) errorHandler(error);
+  }, [isSuccess, isError]);
 
   return {
     handleSwitch,

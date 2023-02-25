@@ -1,12 +1,12 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import TodoService from '../../services/todo.service';
+import { errorHandler } from '../helpers/error-hendler';
 import { ITodo } from '../types/todo.types';
 
 interface IUseGetTodo {
   isLoading: boolean;
-  isError: boolean;
   data?: ITodo[];
-  error: unknown;
 }
 
 export const useGetTodo = (): IUseGetTodo => {
@@ -16,11 +16,13 @@ export const useGetTodo = (): IUseGetTodo => {
     queryFn: todoService.getTodos.bind(todoService)
   });
 
+  useEffect(() => {
+    if (isError) errorHandler(error);
+  }, [isError]);
+
   return {
     isLoading,
-    isError,
-    data,
-    error
+    data
   };
 };
 
