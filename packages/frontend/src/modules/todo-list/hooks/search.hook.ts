@@ -6,8 +6,8 @@ interface IUseSearch {
   searchTerm: string;
 }
 
-export const useSearch = ({ data, searchTerm }: IUseSearch): ITodo[] | null => {
-  const [searchedData, setSearchedData] = useState<ITodo[] | null>(null);
+export const useSearch = ({ data, searchTerm }: IUseSearch): ITodo[] | undefined => {
+  const [searchedData, setSearchedData] = useState<ITodo[] | undefined>(data);
 
   useEffect(() => {
     if (data) {
@@ -15,7 +15,7 @@ export const useSearch = ({ data, searchTerm }: IUseSearch): ITodo[] | null => {
         data.filter((todo) => todo.title.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0)
       );
     }
-  }, [searchTerm]);
+  }, [searchTerm, data]);
 
   return searchedData;
 };

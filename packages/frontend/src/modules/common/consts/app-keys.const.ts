@@ -32,3 +32,10 @@ export const ROUTER_KEYS = {
   TODO: '/todo',
   ITEM: '/:id'
 };
+
+export const FILTER_KEYS = {
+  ALL: 'all',
+  PUBLIC: 'public',
+  PRIVATE: 'private',
+  COMPLETED: 'completed'
+};
