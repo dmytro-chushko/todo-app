@@ -1,15 +1,15 @@
 import { useQuery } from 'react-query';
 import TodoService from '../../services/todo.service';
-import { ITodo } from '../../common/types/todo.types';
+import { ITodo } from '../types/todo.types';
 
-interface IUseTodoApi {
+interface IUseGetTodo {
   isLoading: boolean;
   isError: boolean;
   data?: ITodo[];
   error: unknown;
 }
 
-export const useTodoApi = (): IUseTodoApi => {
+export const useGetTodo = (): IUseGetTodo => {
   const todoService = new TodoService();
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ['todos'],
@@ -24,4 +24,4 @@ export const useTodoApi = (): IUseTodoApi => {
   };
 };
 
-export default useTodoApi;
+export default useGetTodo;

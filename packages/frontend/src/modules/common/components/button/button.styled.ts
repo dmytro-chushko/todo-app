@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { COLORS } from '../../../theme';
-import { ButtonPurpose } from './types';
+import { ButtonPurpose, PURPOSE } from './types';
 
 interface IButton {
   purpose?: ButtonPurpose;
@@ -9,11 +9,11 @@ interface IButton {
 export const Button = styled.button<IButton>`
   width: ${({ purpose }) => {
     switch (purpose) {
-      case 'header':
+      case PURPOSE.HEADER:
         return '35%';
-      case 'card':
+      case PURPOSE.REGULAR:
         return '70px';
-      case 'icon':
+      case PURPOSE.ICON:
         return '35px';
       default:
         return 'auto';

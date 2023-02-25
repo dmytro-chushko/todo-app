@@ -1,17 +1,23 @@
 import React from 'react';
 import { TodoCard } from '../todo-card';
-import { useTodoApi } from '../../hooks/todo-api.hook';
+import { useGetTodo } from '../../hooks/get-todo.hook';
 
 import * as Styled from './todo-container.styled';
 
 export const TodoContainer = () => {
-  const { data } = useTodoApi();
+  const { data } = useGetTodo();
 
   return (
     <Styled.TodoCardList>
       {data &&
-        data.map(({ _id, title, description }) => (
-          <TodoCard key={_id} title={title} description={description} />
+        data.map(({ _id, title, description, isCompleted }) => (
+          <TodoCard
+            key={_id}
+            id={_id}
+            title={title}
+            description={description}
+            isCompleted={isCompleted}
+          />
         ))}
     </Styled.TodoCardList>
   );
