@@ -32,6 +32,12 @@ class HttpSerivce {
 
     return result.data;
   }
+
+  async delete<T>(url: string): Promise<T> {
+    const result = await this.fetchingService.delete(this.getFullApiUrl(url));
+
+    return result.data;
+  }
 }
 
 export default HttpSerivce;

@@ -5,6 +5,7 @@ import { Button } from '../../../common/components/button';
 
 import * as Styled from './controls.styled';
 import { SwitcherIsCompleted } from '../switcher-is-completed';
+import { DeleteTodoBtn } from '../delete-todo-btn';
 
 interface IControlsProps {
   id: string;
@@ -17,9 +18,7 @@ export const Controls = ({ id, isCompleted }: IControlsProps) => (
       <Button purpose="regular" type="button">
         View
       </Button>
-      <Button purpose="regular" type="button">
-        Delete
-      </Button>
+      <DeleteTodoBtn id={id} />
     </Styled.CtrlWrapper>
     <Styled.CtrlWrapper>
       <SwitcherIsCompleted id={id} isCompleted={isCompleted} />

@@ -7,8 +7,12 @@ class TodoService extends HttpService {
     return this.get<ITodo[]>(QUERY_KEYS.TODO);
   }
 
-  setIsComplete({ id, ...body }: ISetIsComplete) {
+  setIsComplete({ id, ...body }: ISetIsComplete): Promise<ITodo> {
     return this.put<ITodo, IIsCompleteBody>(`${QUERY_KEYS.TODO}/${id}`, { ...body });
+  }
+
+  deleteTodos(id: string): Promise<ITodo> {
+    return this.delete<ITodo>(`${QUERY_KEYS.TODO}/${id}`);
   }
 }
 
