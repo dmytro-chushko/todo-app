@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddTodoBtn } from '../add-todo-btn';
+import { AddTodo } from '../add-todo';
 import { FilterBar } from '../filter-bar';
 import { SearchField } from '../search-field';
 
@@ -21,7 +21,7 @@ export const OperationsBar = ({
   <Styled.OperatoionsContainer>
     <Styled.OperationsWrapper>
       <SearchField searchTerm={searchTerm} setSearchTernm={setSearchTernm} />
-      <AddTodoBtn />
+      <AddTodo />
     </Styled.OperationsWrapper>
     <FilterBar setFilterValue={setFilterValue} filterValue={filterValue} />
   </Styled.OperatoionsContainer>

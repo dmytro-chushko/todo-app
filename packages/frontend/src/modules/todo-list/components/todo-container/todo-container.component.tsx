@@ -19,13 +19,14 @@ export const TodoContainer = ({ searchTerm, filterValue }: ITodoContainer) => {
   return (
     <Styled.TodoCardList>
       {filteredData &&
-        filteredData.map(({ _id, title, description, isCompleted }) => (
+        filteredData.map(({ _id, title, description, isPrivate, isCompleted }) => (
           <TodoCard
             key={_id}
             id={_id}
             title={title}
             description={description}
             isCompleted={isCompleted}
+            isPrivate={isPrivate}
           />
         ))}
     </Styled.TodoCardList>

@@ -7,14 +7,19 @@ interface ITodoCardProps {
   id: string;
   title: string;
   description: string;
+  isPrivate: boolean;
   isCompleted: boolean;
 }
 
-export const TodoCard = ({ id, title, description, isCompleted }: ITodoCardProps) => (
+export const TodoCard = ({ id, title, description, isPrivate, isCompleted }: ITodoCardProps) => (
   <Styled.TodoItem>
     <Styled.TodoTitle>{title}</Styled.TodoTitle>
     <Styled.TodoDescription>{description}</Styled.TodoDescription>
-    <Controls id={id} isCompleted={isCompleted} />
+    <Controls
+      id={id}
+      isCompleted={isCompleted}
+      initialValues={{ title, description, isPrivate, isCompleted }}
+    />
   </Styled.TodoItem>
 );
 

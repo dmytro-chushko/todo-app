@@ -1,5 +1,12 @@
 import { QUERY_KEYS } from '../common/consts/app-keys.const';
-import { IAddTodo, IIsCompleteBody, ISetIsComplete, ITodo } from '../todo-list/types/todo.types';
+import {
+  IAddTodo,
+  IEditTodoBody,
+  IEditTodoParams,
+  IIsCompleteBody,
+  ISetIsCompleteParams,
+  ITodo
+} from '../todo-list/types/todo.types';
 import HttpService from './http.service';
 
 class TodoService extends HttpService {
@@ -11,7 +18,11 @@ class TodoService extends HttpService {
     return this.add<ITodo, IAddTodo>(QUERY_KEYS.TODO, body);
   }
 
-  setIsComplete({ id, ...body }: ISetIsComplete): Promise<ITodo> {
+  editTodo({ id, ...body }: IEditTodoParams): Promise<ITodo> {
+    return this.put<ITodo, IEditTodoBody>(`${QUERY_KEYS.TODO}/${id}`, body);
+  }
+
+  setIsComplete({ id, ...body }: ISetIsCompleteParams): Promise<ITodo> {
     return this.put<ITodo, IIsCompleteBody>(`${QUERY_KEYS.TODO}/${id}`, { ...body });
   }
 

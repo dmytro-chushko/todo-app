@@ -1,23 +1,36 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { TextField, FormControlLabel, Checkbox } from '@mui/material';
-import { IAddTodo } from '../../types/todo.types';
+import { FormPurpose, ITodoFormValues } from '../../types/todo.types';
 import { Button } from '../../../common/components/button';
 
-import * as Styled from './add-todo-form.styled';
-import { addTodoSchema } from '../validation/add-todo.schema';
-import { useAddTodo } from '../../hooks/add-todo.hook';
+import * as Styled from './todo-form.styled';
+import { todoSchema } from '../validation/todo.schema';
 
-export const AddTodoForm = () => {
-  const { isLoading, handleSubmit } = useAddTodo();
-  const formik = useFormik<IAddTodo>({
-    initialValues: {
-      title: '',
-      description: '',
-      isPrivate: false
-    },
-    validationSchema: addTodoSchema,
-    onSubmit: handleSubmit
+interface ITodoForm {
+  initialValues?: ITodoFormValues;
+  handleSubmit: (data: ITodoFormValues) => void;
+  isLoading?: boolean;
+  purpose: FormPurpose;
+}
+
+export const TodoForm = ({
+  initialValues = {
+    title: '',
+    description: '',
+    isPrivate: false
+  },
+  handleSubmit,
+  isLoading,
+  purpose
+}: ITodoForm) => {
+  const formik = useFormik<ITodoFormValues>({
+    initialValues,
+    validationSchema: todoSchema,
+    onSubmit: (values, actions) => {
+      handleSubmit(values);
+      if (purpose === FormPurpose.ADD) actions.resetForm();
+    }
   });
 
   return (
@@ -49,12 +62,25 @@ export const AddTodoForm = () => {
           <Checkbox
             id="isPrivate"
             name="isPrivate"
-            value={formik.values.isPrivate}
+            checked={formik.values.isPrivate}
             onChange={formik.handleChange}
           />
         }
         label="Private"
       />
+      {purpose === FormPurpose.EDIT && (
+        <FormControlLabel
+          control={
+            <Checkbox
+              id="isCompleted"
+              name="isCompleted"
+              checked={formik.values.isCompleted}
+              onChange={formik.handleChange}
+            />
+          }
+          label="Completed"
+        />
+      )}
       <Button purpose="regular" type="submit" disabled={isLoading}>
         {isLoading ? 'Loading...' : 'Submit'}
       </Button>

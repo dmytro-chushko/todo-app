@@ -4,30 +4,31 @@ import { QUERY_KEYS } from '../../common/consts/app-keys.const';
 import { queryClient } from '../../react-query/qeury-client';
 import TodoService from '../../services/todo.service';
 import { errorHandler } from '../helpers/error-hendler';
-import { IAddTodo } from '../types/todo.types';
+import { ITodoFormValues } from '../types/todo.types';
 
-interface IUseAddTodo {
-  handleSubmit: (data: IAddTodo) => void;
-  isLoading: boolean;
-}
-
-interface IAddTodoParams {
+interface IUseEditTodoParams {
+  id: string;
   handleClose?: () => void;
 }
 
-export const useAddTodo = ({ handleClose }: IAddTodoParams): IUseAddTodo => {
+interface IUseEditTodo {
+  handleSubmit: (data: ITodoFormValues) => void;
+  isLoading: boolean;
+}
+
+export const useEditTodo = ({ id, handleClose }: IUseEditTodoParams): IUseEditTodo => {
   const todoService = new TodoService();
   const { mutate, isLoading } = useMutation({
-    mutationFn: todoService.addTodo.bind(todoService),
+    mutationFn: todoService.editTodo.bind(todoService),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODO] });
-      toast.success('New task has been added');
+      toast.success('Task has been updated');
     },
     onError: errorHandler
   });
 
-  const handleSubmit = (data: IAddTodo) => {
-    mutate(data);
+  const handleSubmit = (data: ITodoFormValues) => {
+    mutate({ id, ...data });
     if (handleClose) handleClose();
   };
 
