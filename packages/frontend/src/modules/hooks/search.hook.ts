@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ITodo } from '../types/todo.types';
+import { ITodo } from '../common/types/todo.types';
 
 interface IUseSearch {
   data?: ITodo[];

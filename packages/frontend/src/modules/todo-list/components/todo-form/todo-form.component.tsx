@@ -1,11 +1,13 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { TextField, FormControlLabel, Checkbox } from '@mui/material';
-import { FormPurpose, ITodoFormValues } from '../../types/todo.types';
+import { ITodoFormValues } from '../../../common/types/todo.types';
 import { Button } from '../../../common/components/button';
+import { todoSchema } from '../validation/todo.schema';
+import { PURPOSE } from '../../../common/components/button/types';
+import { FormPurpose } from '../../types/todo-list.types';
 
 import * as Styled from './todo-form.styled';
-import { todoSchema } from '../validation/todo.schema';
 
 interface ITodoForm {
   initialValues?: ITodoFormValues;
@@ -81,7 +83,7 @@ export const TodoForm = ({
           label="Completed"
         />
       )}
-      <Button purpose="regular" type="submit" disabled={isLoading}>
+      <Button purpose={PURPOSE.REGULAR} type="submit" disabled={isLoading}>
         {isLoading ? 'Loading...' : 'Submit'}
       </Button>
     </Styled.Form>

@@ -1,12 +1,12 @@
 import React from 'react';
-import { ButtonPurpose } from './types';
+import { PURPOSE, TYPE } from './types';
 
 import * as Styled from './button.styled';
 
 interface IButtonProps {
-  purpose?: ButtonPurpose;
+  purpose?: PURPOSE;
   children: React.ReactNode;
-  type: 'button' | 'submit' | 'reset';
+  type: TYPE;
 }
 
 const Button = ({ purpose, type, children }: IButtonProps) => (

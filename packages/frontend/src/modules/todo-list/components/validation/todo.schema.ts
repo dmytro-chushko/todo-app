@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { ITodoFormValues } from '../../types/todo.types';
+import { ITodoFormValues } from '../../../common/types/todo.types';
 
 export const todoSchema: yup.ObjectSchema<ITodoFormValues> = yup.object({
   title: yup.string().required('title is required'),

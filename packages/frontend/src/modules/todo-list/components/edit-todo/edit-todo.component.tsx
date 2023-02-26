@@ -3,9 +3,11 @@ import { ModeEdit } from '@mui/icons-material';
 import { Button } from '../../../common/components/button';
 import { ModalWindow } from '../modal';
 import { TodoForm } from '../todo-form';
-import { useModalControl } from '../../hooks/modal-control.hook';
-import { FormPurpose, ITodoFormValues } from '../../types/todo.types';
-import { useEditTodo } from '../../hooks/edit-todo.hook';
+import { useModalControl } from '../../../hooks/modal-control.hook';
+import { ITodoFormValues } from '../../../common/types/todo.types';
+import { useEditTodo } from '../../../hooks/edit-todo.hook';
+import { PURPOSE } from '../../../common/components/button/types';
+import { FormPurpose } from '../../types/todo-list.types';
 
 interface IEditTodo {
   id: string;
@@ -18,7 +20,7 @@ export const EditTodo = ({ id, initialValues }: IEditTodo) => {
 
   return (
     <>
-      <Button purpose="icon" type="button" onClick={handleOpen}>
+      <Button purpose={PURPOSE.ICON} type="button" onClick={handleOpen}>
         <ModeEdit fontSize="small" />
       </Button>
       <ModalWindow open={open} onClose={handleClose}>

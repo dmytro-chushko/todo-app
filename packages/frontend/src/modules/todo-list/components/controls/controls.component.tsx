@@ -1,11 +1,14 @@
 import React from 'react';
-import { SwitcherIsCompleted } from '../switcher-is-completed';
+import { useHistory } from 'react-router-dom';
+import { SwitcherIsValue } from '../../../common/components/switcher';
 import { DeleteTodoBtn } from '../delete-todo-btn';
 import { Button } from '../../../common/components/button';
 import { EditTodo } from '../edit-todo/edit-todo.component';
+import { ITodoFormValues } from '../../../common/types/todo.types';
+import { PURPOSE } from '../../../common/components/button/types';
 
 import * as Styled from './controls.styled';
-import { ITodoFormValues } from '../../types/todo.types';
+import { ValuName } from '../../../common/types/components.types';
 
 interface IControlsProps {
   id: string;
@@ -13,17 +16,27 @@ interface IControlsProps {
   initialValues: ITodoFormValues;
 }
 
-export const Controls = ({ id, isCompleted, initialValues }: IControlsProps) => (
-  <Styled.CtrlContainer>
-    <Styled.CtrlWrapper>
-      <Button purpose="regular" type="button">
-        View
-      </Button>
-      <DeleteTodoBtn id={id} />
-    </Styled.CtrlWrapper>
-    <Styled.CtrlWrapper>
-      <SwitcherIsCompleted id={id} isCompleted={isCompleted} />
-      <EditTodo id={id} initialValues={initialValues} />
-    </Styled.CtrlWrapper>
-  </Styled.CtrlContainer>
-);
+export const Controls = ({ id, isCompleted, initialValues }: IControlsProps) => {
+  const history = useHistory();
+
+  return (
+    <Styled.CtrlContainer>
+      <Styled.CtrlWrapper>
+        <Button
+          purpose={PURPOSE.REGULAR}
+          type="button"
+          onClick={() => {
+            history.push(`/${id}`);
+          }}
+        >
+          View
+        </Button>
+        <DeleteTodoBtn id={id} />
+      </Styled.CtrlWrapper>
+      <Styled.CtrlWrapper>
+        <SwitcherIsValue id={id} isValue={isCompleted} valueName={ValuName.COMPLETE} />
+        <EditTodo id={id} initialValues={initialValues} />
+      </Styled.CtrlWrapper>
+    </Styled.CtrlContainer>
+  );
+};

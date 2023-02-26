@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePageContainer from '../home';
 import TodoListPageContainer from '../todo-list';
-import TodoItemPageContainer from '../pages/todo-item';
+import { TodoItemPageContainer } from '../todo-item';
 import NotFoundPageContainer from '../pages/not-found';
 import { APP_KEYS } from '../common/consts';
 

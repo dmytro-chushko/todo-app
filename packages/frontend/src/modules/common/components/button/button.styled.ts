@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { COLORS } from '../../../theme';
-import { ButtonPurpose, PURPOSE } from './types';
+import { PURPOSE } from './types';
 
 interface IButton {
-  purpose?: ButtonPurpose;
+  purpose?: PURPOSE;
 }
 
 export const Button = styled.button<IButton>`
@@ -19,6 +19,11 @@ export const Button = styled.button<IButton>`
         return 'auto';
     }
   }};
+  ${({ purpose }) =>
+    purpose === PURPOSE.BACK &&
+    css`
+      width: 75px;
+    `}
   height: 35px;
   line-height: 0;
   background-color: ${COLORS.buttonColor};

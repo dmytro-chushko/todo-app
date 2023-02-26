@@ -12,8 +12,12 @@ export interface IEditTodoBody extends IAddTodo {
   isCompleted?: boolean;
 }
 
-export interface IEditTodoParams extends IEditTodoBody {
+export interface IEditTodoParams {
   id: string;
+  title?: string;
+  description?: string;
+  isPrivate?: boolean;
+  isCompleted?: boolean;
 }
 
 export interface ITodo {
@@ -22,17 +26,4 @@ export interface ITodo {
   description: string;
   isPrivate: boolean;
   isCompleted: boolean;
-}
-
-export interface IIsCompleteBody {
-  isCompleted: boolean;
-}
-
-export interface ISetIsCompleteParams extends IIsCompleteBody {
-  id: string;
-}
-
-export enum FormPurpose {
-  ADD = 'add',
-  EDIT = 'edit'
 }

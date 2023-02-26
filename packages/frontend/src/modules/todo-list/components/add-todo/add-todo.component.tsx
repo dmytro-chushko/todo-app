@@ -2,9 +2,10 @@ import React from 'react';
 import { Button } from '../../../common/components/button';
 import { TodoForm } from '../todo-form';
 import { ModalWindow } from '../modal';
-import { useAddTodo } from '../../hooks/add-todo.hook';
-import { FormPurpose } from '../../types/todo.types';
-import { useModalControl } from '../../hooks/modal-control.hook';
+import { useAddTodo } from '../../../hooks/add-todo.hook';
+import { useModalControl } from '../../../hooks/modal-control.hook';
+import { PURPOSE } from '../../../common/components/button/types';
+import { FormPurpose } from '../../types/todo-list.types';
 
 export const AddTodo = () => {
   const { open, handleOpen, handleClose } = useModalControl();
@@ -12,7 +13,7 @@ export const AddTodo = () => {
 
   return (
     <>
-      <Button purpose="regular" type="button" onClick={handleOpen}>
+      <Button purpose={PURPOSE.REGULAR} type="button" onClick={handleOpen}>
         Add
       </Button>
       <ModalWindow open={open} onClose={handleClose}>

@@ -1,10 +1,10 @@
 import React from 'react';
 import { TodoCard } from '../todo-card';
-import { useGetTodo } from '../../hooks/get-todo.hook';
+import { useGetTodo } from '../../../hooks/get-all-todo.hook';
 
 import * as Styled from './todo-container.styled';
-import { useSearch } from '../../hooks/search.hook';
-import { useFilter } from '../../hooks/filter.hook';
+import { useSearch } from '../../../hooks/search.hook';
+import { useFilter } from '../../../hooks/filter.hook';
 
 interface ITodoContainer {
   searchTerm: string;
