@@ -1,4 +1,5 @@
 import React from 'react';
+import { AddTodoBtn } from '../add-todo-btn';
 import { FilterBar } from '../filter-bar';
 import { SearchField } from '../search-field';
 
@@ -18,7 +19,10 @@ export const OperationsBar = ({
   setFilterValue
 }: IOperationsBarProps) => (
   <Styled.OperatoionsContainer>
-    <SearchField searchTerm={searchTerm} setSearchTernm={setSearchTernm} />
+    <Styled.OperationsWrapper>
+      <SearchField searchTerm={searchTerm} setSearchTernm={setSearchTernm} />
+      <AddTodoBtn />
+    </Styled.OperationsWrapper>
     <FilterBar setFilterValue={setFilterValue} filterValue={filterValue} />
   </Styled.OperatoionsContainer>
 );

@@ -27,8 +27,10 @@ export const Button = styled.button<IButton>`
   color: ${COLORS.white};
   transition: all ease-in-out 0.4s;
 
-  :hover {
+  :hover,
+  :focus {
     background-color: ${COLORS.hoverButtonColor};
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    outline: none;
   }
 `;

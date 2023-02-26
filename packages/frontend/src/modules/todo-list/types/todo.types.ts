@@ -1,8 +1,11 @@
-export interface ITodo {
-  _id: string;
+export interface IAddTodo {
   title: string;
   description: string;
-  isPrivate: boolean;
+  isPrivate?: boolean;
+}
+
+export interface ITodo extends IAddTodo {
+  _id: string;
   isCompleted: boolean;
 }
 

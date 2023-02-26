@@ -27,6 +27,12 @@ class HttpSerivce {
     return result.data;
   }
 
+  async add<T, U>(url: string, body: U): Promise<T> {
+    const result = await this.fetchingService.post(this.getFullApiUrl(url), body);
+
+    return result.data;
+  }
+
   async put<T, U>(url: string, body: U): Promise<T> {
     const result = await this.fetchingService.put(this.getFullApiUrl(url), body);
 

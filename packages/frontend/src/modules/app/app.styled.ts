@@ -64,6 +64,10 @@ export const GlobalStyles = createGlobalStyle`
   select {
     font: inherit;
   }
+
+  button {
+    cursor: pointer;
+  }
   `;
 
 export const Container = styled.div`

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Switch, CircularProgress } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import { useSetIsComplete } from '../../hooks/set-is-complete.hook';
+
+import * as Styled from './switcher.styled';
 
 interface ISwitcherIsCompleted {
   id: string;
@@ -16,6 +18,6 @@ export const SwitcherIsCompleted = ({ id, isCompleted }: ISwitcherIsCompleted) =
   return isLoading ? (
     <CircularProgress />
   ) : (
-    <Switch checked={isCompleted} onChange={handleSwitch} />
+    <Styled.TodoSwitch checked={isCompleted} onChange={handleSwitch} />
   );
 };
