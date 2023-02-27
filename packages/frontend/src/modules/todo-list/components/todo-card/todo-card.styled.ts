@@ -17,7 +17,7 @@ export const TodoDescription = styled.p`
 export const TodoItem = styled.li`
   list-style-type: none;
 
-  @media (${MEDIA_KEYS.MIN_TABLET}) {
+  @media (${MEDIA_KEYS.MIN_TABLET}) and (${MEDIA_KEYS.MAX_TABLET}) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -10,11 +10,11 @@ class HttpSerivce {
   constructor(
     baseUrl = process.env.REACT_APP_SERVER_URL,
     fetchingService = axios,
-    apiVersion = 'api'
+    apiVersion = process.env.REACT_APP_API_VERSION
   ) {
     this.baseUrl = baseUrl || '';
     this.fetchingService = fetchingService;
-    this.apiVersion = apiVersion;
+    this.apiVersion = apiVersion || '';
   }
 
   private getFullApiUrl(url: string) {

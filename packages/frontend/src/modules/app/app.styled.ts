@@ -1,5 +1,5 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import { COLORS, SPACES } from '../theme';
+import { createGlobalStyle } from 'styled-components';
+import { COLORS } from '../theme';
 
 // eslint-disable-next-line import/prefer-default-export
 export const GlobalStyles = createGlobalStyle`
@@ -69,8 +69,3 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
   `;
-
-export const Container = styled.div`
-  padding-left: ${SPACES.l};
-  padding-right: ${SPACES.l};
-`;

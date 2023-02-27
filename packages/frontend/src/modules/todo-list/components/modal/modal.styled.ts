@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
 import { COLORS, SPACES } from '../../../theme';
 
 export const ModalContainer = styled.div`
@@ -11,6 +12,14 @@ export const ModalContainer = styled.div`
   border-radius: 5px;
   padding: ${SPACES.l};
   outline: none;
+
+  @media (${MEDIA_KEYS.MIN_TABLET}) {
+    width: 400px;
+  }
+
+  @media (${MEDIA_KEYS.MIN_DESKTOP}) {
+    width: 600px;
+  }
 `;
 
 export const CloseButton = styled.button`

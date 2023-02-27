@@ -13,7 +13,6 @@ export const MainRouter = () => (
       <Route component={TodoListPageContainer} exact path={APP_KEYS.ROUTER_KEYS.TODO} />
       <Route component={TodoItemPageContainer} path={APP_KEYS.ROUTER_KEYS.ITEM} />
       <Route component={NotFoundPageContainer} path="*" />
-      {/* <Route element={<div>Not fount</div>} path="*" /> */}
     </Switch>
   </Router>
 );

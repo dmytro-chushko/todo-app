@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { COLORS } from '../../../theme';
+import { MEDIA_KEYS } from '../../consts/app-keys.const';
 import { PURPOSE } from './types';
 
 interface IButton {
@@ -23,6 +24,17 @@ export const Button = styled.button<IButton>`
     purpose === PURPOSE.BACK &&
     css`
       width: 75px;
+
+      @media (${MEDIA_KEYS.MIN_DESKTOP}) {
+        width: 150px;
+      }
+    `}
+  ${({ purpose }) =>
+    purpose === PURPOSE.HEADER &&
+    css`
+      @media (${MEDIA_KEYS.MIN_DESKTOP}) {
+        width: 100px;
+      }
     `}
   height: 35px;
   line-height: 0;
