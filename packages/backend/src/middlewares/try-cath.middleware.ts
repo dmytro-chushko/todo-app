@@ -5,9 +5,7 @@ export const tryCathMiddleware =
     try {
       const result = await handler(req, res, next);
 
-      res.json({
-        data: { result }
-      });
+      res.send(result);
     } catch (error) {
       next(error);
     }

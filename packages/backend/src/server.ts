@@ -5,6 +5,7 @@ import 'dotenv/config';
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 import axios from 'axios';
+import cors from 'cors';
 import AppRouter from './routes';
 import connectDB from './config/database';
 
@@ -15,6 +16,7 @@ connectDB();
 
 // Express configuration
 app.set('port', process.env.PORT || 4200);
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
