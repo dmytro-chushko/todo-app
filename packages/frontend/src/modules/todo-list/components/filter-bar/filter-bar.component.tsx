@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup } from '@mui/material';
+import { ButtonGroup } from '@mui/material';
 
 import * as Styled from './filter-bar.styled';
 import { FILTER_KEYS } from '../../../common/consts/app-keys.const';
@@ -11,33 +11,33 @@ interface IFilterBarProps {
 
 export const FilterBar = ({ setFilterValue, filterValue }: IFilterBarProps) => (
   <Styled.FilterBarContainer>
-    <ButtonGroup variant="outlined" size="small" fullWidth aria-label="todo filter bar">
-      <Button
+    <ButtonGroup variant="outlined" size="medium" fullWidth aria-label="todo filter bar">
+      <Styled.FilterItem
         variant={filterValue === FILTER_KEYS.ALL ? 'contained' : 'outlined'}
         onClick={(e) => {
           setFilterValue(e.currentTarget.textContent);
         }}
       >
         {FILTER_KEYS.ALL}
-      </Button>
-      <Button
+      </Styled.FilterItem>
+      <Styled.FilterItem
         variant={filterValue === FILTER_KEYS.PRIVATE ? 'contained' : 'outlined'}
         onClick={(e) => setFilterValue(e.currentTarget.textContent)}
       >
         {FILTER_KEYS.PRIVATE}
-      </Button>
-      <Button
+      </Styled.FilterItem>
+      <Styled.FilterItem
         variant={filterValue === FILTER_KEYS.PUBLIC ? 'contained' : 'outlined'}
         onClick={(e) => setFilterValue(e.currentTarget.textContent)}
       >
         {FILTER_KEYS.PUBLIC}
-      </Button>
-      <Button
+      </Styled.FilterItem>
+      <Styled.FilterItem
         variant={filterValue === FILTER_KEYS.COMPLETED ? 'contained' : 'outlined'}
         onClick={(e) => setFilterValue(e.currentTarget.textContent)}
       >
         {FILTER_KEYS.COMPLETED}
-      </Button>
+      </Styled.FilterItem>
     </ButtonGroup>
   </Styled.FilterBarContainer>
 );

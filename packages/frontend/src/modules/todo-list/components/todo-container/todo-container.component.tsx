@@ -1,10 +1,13 @@
 import React from 'react';
+import { useMediaQuery } from '@mui/material';
 import { TodoCard } from '../todo-card';
 import { useGetTodo } from '../../../hooks/get-all-todo.hook';
-
-import * as Styled from './todo-container.styled';
 import { useSearch } from '../../../hooks/search.hook';
 import { useFilter } from '../../../hooks/filter.hook';
+import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
+
+import * as Styled from './todo-container.styled';
+import { TabletSlider } from '../tablet-slider';
 
 interface ITodoContainer {
   searchTerm: string;
@@ -12,11 +15,14 @@ interface ITodoContainer {
 }
 
 export const TodoContainer = ({ searchTerm, filterValue }: ITodoContainer) => {
-  const { data } = useGetTodo();
+  const isTablet = useMediaQuery(`(${MEDIA_KEYS.MIN_TABLET})`);
+  const { data, isLoading } = useGetTodo();
   const searchedData = useSearch({ data, searchTerm });
   const filteredData = useFilter({ data: searchedData, filterValue });
 
-  return (
+  return isTablet ? (
+    <TabletSlider data={filteredData} isLoading={isLoading} />
+  ) : (
     <Styled.TodoCardList>
       {filteredData &&
         filteredData.map(({ _id, title, description, isPrivate, isCompleted }) => (

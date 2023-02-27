@@ -3,7 +3,7 @@ import { COLORS, FONTS, SPACES } from '../theme';
 
 export const TodoTitle = styled.h1`
   font-size: ${FONTS.SIZES.l};
-  margin-bottom: 15%;
+  margin-bottom: 100px;
 `;
 
 export const DescriptionLable = styled.p`

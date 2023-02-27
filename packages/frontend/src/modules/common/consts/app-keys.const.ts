@@ -39,3 +39,11 @@ export const FILTER_KEYS = {
   PRIVATE: 'private',
   COMPLETED: 'completed'
 };
+
+export const MEDIA_KEYS = {
+  MAX_MOBILE: 'max-width: 424px',
+  MIN_TABLET: 'min-width: 425px',
+  MIDDLE_TABLET: 'min-width: 500px',
+  MAX_TABLET: 'max-width: 767px',
+  MIN_DESKTOP: 'min-width: 768px'
+};
