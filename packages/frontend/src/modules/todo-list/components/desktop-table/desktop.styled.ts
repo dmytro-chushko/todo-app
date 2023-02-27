@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { TableRow, TableCell, tableCellClasses, TableContainer } from '@mui/material';
-import { COLORS } from '../../../theme';
+import { COLORS, SIZES } from '../../../theme';
 
 export const TodoTableCell = styled(TableCell)`
   :nth-of-type(2) {
-    width: 40%;
+    width: ${SIZES.DESCR_TABLE_WIDTH};
   }
 
   &.${tableCellClasses.head} {
@@ -24,5 +24,5 @@ export const TodoRableRow = styled(TableRow)`
 `;
 
 export const TodoTableContainer = styled(TableContainer)`
-  border-radius: 5px;
+  border-radius: ${SIZES.BORDER_RADIUS};
 `;

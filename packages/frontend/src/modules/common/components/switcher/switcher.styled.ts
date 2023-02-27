@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Switch } from '@mui/material';
-import { COLORS } from '../../../theme';
+import { COLORS, SIZES } from '../../../theme';
 
 export const TodoSwitch = styled(Switch)`
   .css-1yjjitx-MuiSwitch-track,
@@ -13,6 +13,6 @@ export const TodoSwitch = styled(Switch)`
   :hover .css-jsexje-MuiSwitch-thumb,
   input:focus .css-jsexje-MuiSwitch-thumb {
     background-color: ${COLORS.hoverButtonColor};
-    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: ${SIZES.BOX_SHADOW};
   }
 `;

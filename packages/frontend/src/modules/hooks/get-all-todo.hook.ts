@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import TodoService from '../services/todo.service';
-import { errorHandler } from '../todo-list/helpers/error-hendler';
+import { errorHandler } from '../helpers/error-hendler';
 import { ITodo } from '../common/types/todo.types';
 
 interface IUseGetTodo {

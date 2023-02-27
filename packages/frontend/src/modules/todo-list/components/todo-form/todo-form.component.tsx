@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { TextField, FormControlLabel, Checkbox } from '@mui/material';
 import { ITodoFormValues } from '../../../common/types/todo.types';
 import { Button } from '../../../common/components/button';
-import { todoSchema } from '../validation/todo.schema';
+import { todoSchema } from '../../validation/todo.schema';
 import { PURPOSE } from '../../../common/components/button/types';
 import { FormPurpose } from '../../types/todo-list.types';
 

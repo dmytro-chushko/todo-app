@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
-import { COLORS, SPACES } from '../../../theme';
+import { COLORS, SIZES, SPACES } from '../../../theme';
 
 export const ModalContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
+  width: ${SIZES.MODAL.MOBILE};
   background-color: ${COLORS.white};
-  border-radius: 5px;
+  border-radius: ${SIZES.BORDER_RADIUS};
   padding: ${SPACES.l};
   outline: none;
 
   @media (${MEDIA_KEYS.MIN_TABLET}) {
-    width: 400px;
+    width: ${SIZES.MODAL.MOBILE};
   }
 
   @media (${MEDIA_KEYS.MIN_DESKTOP}) {
-    width: 600px;
+    width: ${SIZES.MODAL.DESKTOP};
   }
 `;
 
@@ -41,6 +41,6 @@ export const CloseButton = styled.button`
 
   :hover {
     background-color: ${COLORS.hoverButtonColor};
-    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: ${SIZES.BOX_SHADOW};
   }
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
-import { COLORS, FONTS, SPACES } from '../../../theme';
+import { COLORS, FONTS, SIZES, SPACES } from '../../../theme';
 
 export const TodoTitle = styled.h2`
   font-size: ${FONTS.SIZES.l};
@@ -21,10 +21,10 @@ export const TodoItem = styled.li`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 250px;
+    height: ${SIZES.CARD.HEIGHT};
     padding: ${SPACES.m};
-    border: 2px solid ${COLORS.secondary};
-    border-radius: 5px;
+    border: ${SIZES.CARD.BORDER} solid ${COLORS.secondary};
+    border-radius: ${SIZES.BORDER_RADIUS};
 
     :not(:last-of-type) {
       margin-right: ${SPACES.m};

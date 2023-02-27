@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePageContainer from '../home';
 import TodoListPageContainer from '../todo-list';
 import { TodoItemPageContainer } from '../todo-item';
-import NotFoundPageContainer from '../pages/not-found';
+import NotFoundPageContainer from '../not-found';
 import { APP_KEYS } from '../common/consts';
 
 export const MainRouter = () => (

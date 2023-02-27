@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { QUERY_KEYS } from '../common/consts/app-keys.const';
 import TodoService from '../services/todo.service';
 import { ITodo } from '../common/types/todo.types';
-import { errorHandler } from '../todo-list/helpers/error-hendler';
+import { errorHandler } from '../helpers/error-hendler';
 
 interface IUseGetTodoById {
   isLoading: boolean;

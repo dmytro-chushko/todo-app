@@ -4,7 +4,7 @@ import { QUERY_KEYS } from '../common/consts/app-keys.const';
 import { ValuName } from '../common/types/components.types';
 import { queryClient } from '../react-query/qeury-client';
 import TodoService from '../services/todo.service';
-import { errorHandler } from '../todo-list/helpers/error-hendler';
+import { errorHandler } from '../helpers/error-hendler';
 
 interface IUseSetIsComplete {
   handleSwitch: () => void;

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { COLORS, FONTS, SPACES } from '../theme';
+import { COLORS, FONTS, SIZES, SPACES } from '../theme';
 
 export const TodoTitle = styled.h1`
   font-size: ${FONTS.SIZES.l};
-  margin-bottom: 100px;
+  margin-bottom: ${SIZES.HEIGHT.m};
 `;
 
 export const DescriptionLable = styled.p`

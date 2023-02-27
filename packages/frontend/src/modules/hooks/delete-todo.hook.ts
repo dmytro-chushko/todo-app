@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { QUERY_KEYS } from '../common/consts/app-keys.const';
 import { queryClient } from '../react-query/qeury-client';
 import TodoService from '../services/todo.service';
-import { errorHandler } from '../todo-list/helpers/error-hendler';
+import { errorHandler } from '../helpers/error-hendler';
 
 interface IUseDeleteTodo {
   handleDelete: () => void;

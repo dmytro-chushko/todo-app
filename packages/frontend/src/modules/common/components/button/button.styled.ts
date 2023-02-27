@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { COLORS } from '../../../theme';
+import { COLORS, SIZES } from '../../../theme';
 import { MEDIA_KEYS } from '../../consts/app-keys.const';
 import { PURPOSE } from './types';
 
@@ -11,11 +11,11 @@ export const Button = styled.button<IButton>`
   width: ${({ purpose }) => {
     switch (purpose) {
       case PURPOSE.HEADER:
-        return '35%';
+        return SIZES.BUTTON.RESONSIVE;
       case PURPOSE.REGULAR:
-        return '70px';
+        return SIZES.BUTTON.REGULAR;
       case PURPOSE.ICON:
-        return '35px';
+        return SIZES.BUTTON.ICON;
       default:
         return 'auto';
     }
@@ -23,31 +23,31 @@ export const Button = styled.button<IButton>`
   ${({ purpose }) =>
     purpose === PURPOSE.BACK &&
     css`
-      width: 75px;
+      width: ${SIZES.BUTTON.REGULAR};
 
       @media (${MEDIA_KEYS.MIN_DESKTOP}) {
-        width: 150px;
+        width: ${SIZES.BUTTON.l};
       }
     `}
   ${({ purpose }) =>
     purpose === PURPOSE.HEADER &&
     css`
       @media (${MEDIA_KEYS.MIN_DESKTOP}) {
-        width: 100px;
+        width: ${SIZES.BUTTON.m};
       }
     `}
-  height: 35px;
+  height: ${SIZES.BUTTON.HEIGHT};
   line-height: 0;
   background-color: ${COLORS.buttonColor};
   border: none;
-  border-radius: 5px;
+  border-radius: ${SIZES.BORDER_RADIUS};
   color: ${COLORS.white};
   transition: all ease-in-out 0.4s;
 
   :hover,
   :focus {
     background-color: ${COLORS.hoverButtonColor};
-    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: ${SIZES.BOX_SHADOW};
     outline: none;
   }
 `;

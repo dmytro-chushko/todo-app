@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { SPACES } from '../../../theme';
+import { SIZES, SPACES } from '../../../theme';
 
 export const SwitchersContainer = styled.div`
   display: grid;
   gap: ${SPACES.m};
-  margin-bottom: 150px;
+  margin-bottom: ${SIZES.HEIGHT.l};
 `;
 
 export const SwitcherWrapper = styled.div`
