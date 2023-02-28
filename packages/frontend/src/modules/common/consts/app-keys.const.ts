@@ -11,7 +11,8 @@ export const QUERY_KEYS = {
   EXAMPLE: 'EXAMPLE',
   TOKEN: 'TOKEN',
   STATISTIC: 'statistic',
-  TRENDING: 'trending'
+  TRENDING: 'trending',
+  TODO: 'todos'
 };
 
 // Backend Routes
@@ -27,5 +28,22 @@ export const BACKEND_KEYS = {
 export const ROUTER_KEYS = {
   ROOT: '/',
   HOME: 'home',
-  AUTHORIZED: 'authorized'
+  AUTHORIZED: 'authorized',
+  TODO: '/todo',
+  ITEM: '/:id'
+};
+
+export const FILTER_KEYS = {
+  ALL: 'all',
+  PUBLIC: 'public',
+  PRIVATE: 'private',
+  COMPLETED: 'completed'
+};
+
+export const MEDIA_KEYS = {
+  MAX_MOBILE: 'max-width: 424px',
+  MIN_TABLET: 'min-width: 425px',
+  MIDDLE_TABLET: 'min-width: 500px',
+  MAX_TABLET: 'max-width: 767px',
+  MIN_DESKTOP: 'min-width: 768px'
 };
