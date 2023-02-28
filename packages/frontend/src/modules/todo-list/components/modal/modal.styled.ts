@@ -37,10 +37,11 @@ export const CloseButton = styled.button`
   color: ${COLORS.white};
   background-color: ${COLORS.buttonColor};
   line-height: 0;
-  transition: all ease-in-out 0.4s;
+  transition: all ease-in-out ${SIZES.TRANSITION.DURATION};
 
-  :hover {
+  :hover,
+  :focus {
     background-color: ${COLORS.hoverButtonColor};
-    box-shadow: ${SIZES.BOX_SHADOW};
+    box-shadow: ${SIZES.BOX_SHADOW} ${COLORS.buttonShadow};
   }
 `;

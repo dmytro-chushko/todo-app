@@ -5,7 +5,7 @@ import { COLORS, SIZES } from '../../../theme';
 export const TodoSwitch = styled(Switch)`
   .css-1yjjitx-MuiSwitch-track,
   .css-jsexje-MuiSwitch-thumb {
-    transition: all ease-in-out 0.4s;
+    transition: all ease-in-out ${SIZES.TRANSITION.DURATION};
   }
 
   :hover .css-1yjjitx-MuiSwitch-track,

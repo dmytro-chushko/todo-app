@@ -9,9 +9,13 @@ export const BUTTON = {
 
 export const BORDER_RADIUS = '5px';
 
-export const BOX_SHADOW = '3px 3px 5px 0px rgba(0, 0, 0, 0.75)';
+export const BOX_SHADOW = '3px 3px 5px 0px';
 
 export const DESCR_TABLE_WIDTH = '40%';
+
+export const TRANSITION = {
+  DURATION: '0.4s'
+};
 
 export const HEIGHT = {
   l: '150px',
