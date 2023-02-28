@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { ITodo } from '../../../common/types/todo.types';
+import { SIZES } from '../../../theme';
 import { TodoCard } from '../todo-card';
 
 import * as Styled from './tablet-slider.styled';
@@ -14,9 +15,9 @@ export const TabletSlider = ({ data, isLoading }: ITabletSlider) => {
   const sliderSettings = {
     dots: true,
     infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    speed: SIZES.SLIDER.SPEED,
+    slidesToShow: SIZES.SLIDER.TO_SHOW,
+    slidesToScroll: SIZES.SLIDER.TO_SCROLL,
     centerMode: true
   };
 

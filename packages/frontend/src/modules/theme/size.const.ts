@@ -40,3 +40,22 @@ export const CARD = {
   HEIGHT: '250px',
   BORDER: '2px'
 };
+
+export const MODAL_POSITION = {
+  TOP: '50%',
+  LEFT: '50%'
+};
+
+export const CLOSE_BUTTON = {
+  TOP: '10px',
+  RIGHT: '10px',
+  WIDTH: '35px',
+  HEIGHT: '35px',
+  BORDER_RADIUS: '50%'
+};
+
+export const SLIDER = {
+  TO_SHOW: 1,
+  TO_SCROLL: 1,
+  SPEED: 500
+};

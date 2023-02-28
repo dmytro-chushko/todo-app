@@ -4,9 +4,9 @@ import { COLORS, SIZES, SPACES } from '../../../theme';
 
 export const ModalContainer = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: ${SIZES.MODAL_POSITION.TOP};
+  left: ${SIZES.MODAL_POSITION.LEFT};
+  transform: translate(-${SIZES.MODAL_POSITION.TOP}, -${SIZES.MODAL_POSITION.LEFT});
   width: ${SIZES.MODAL.MOBILE};
   background-color: ${COLORS.white};
   border-radius: ${SIZES.BORDER_RADIUS};
@@ -24,15 +24,15 @@ export const ModalContainer = styled.div`
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: ${SIZES.CLOSE_BUTTON.TOP};
+  right: ${SIZES.CLOSE_BUTTON.RIGHT};
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
+  width: ${SIZES.CLOSE_BUTTON.WIDTH};
+  height: ${SIZES.CLOSE_BUTTON.HEIGHT};
   padding: 0;
-  border-radius: 50%;
+  border-radius: ${SIZES.CLOSE_BUTTON.BORDER_RADIUS};
   border: none;
   color: ${COLORS.white};
   background-color: ${COLORS.buttonColor};
