@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Container } from '@mui/material';
 import { Header } from '../common/components/header';
 
-import * as Styled from './todo-list.styled';
+import * as Styled from './todo-item.styled';
 import { Button } from '../common/components/button';
 import { PURPOSE } from '../common/components/button/types';
 import { useGetTodoById } from '../hooks/get-one-todo.hook';

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "Precommit hook is running..."
 USER_NAME="dchushko"
 ESLINT="$(git rev-parse --show-toplevel)/node_modules/.bin/eslint"
