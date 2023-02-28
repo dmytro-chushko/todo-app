@@ -12,24 +12,24 @@ export default class UserService implements IUserService {
     return user;
   }
 
-  async createUser(body: ICreateUser): Promise<IUser> {
+  async createUser(body: ICreateUser): Promise<string> {
     const user = await this.findUser(body.email);
 
     if (user) throw new createError.Conflict('this email allready exist');
 
     const cryptedPassword = cryptPass(body.password);
-    const newUser = await User.create({
+    await User.create({
       email: body.email,
       password: cryptedPassword
     });
 
-    return newUser;
+    return 'User has been created';
   }
 
   async loginUser(body: ICreateUser): Promise<IToken> {
     const user = await this.findUser(body.email);
 
-    if (!user) throw new createError.NotFound('user not exist');
+    if (!user) throw new createError.NotFound('user is not exist');
 
     const isPasswordCorrect = bcrypt.compareSync(body.password, user.password);
 

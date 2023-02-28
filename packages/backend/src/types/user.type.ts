@@ -21,11 +21,11 @@ export interface IJwtPayload {
 
 export interface IUserService {
   findUser(email: string): Promise<IUser | null>;
-  createUser(body: ICreateUser): Promise<IUser>;
+  createUser(body: ICreateUser): Promise<string>;
   loginUser(body: IUser): Promise<IToken>;
 }
 
 export interface IUserController {
-  registerUser(req: CustomRequest<IUser>): Promise<IUser>;
+  registerUser(req: CustomRequest<IUser>): Promise<string>;
   loginUser(req: CustomRequest<IUser>): Promise<IToken>;
 }
