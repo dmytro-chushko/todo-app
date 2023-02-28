@@ -16,7 +16,7 @@ export default class TodoService implements ITodoServices {
 
   async create(body: ITodo, userId?: string): Promise<ITodo> {
     const createdTodo = await Todo.create({ ...body, userId });
-    console.log(userId);
+
     return createdTodo;
   }
 
