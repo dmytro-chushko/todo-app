@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { cryptPass } from '../helpers/crypt-password';
 import User from '../models/User';
-import { IToken, IUser, IUserService } from '../types/user.type';
+import { ICreateUser, IToken, IUser, IUserService } from '../types/user.type';
 
 export default class UserService implements IUserService {
   async findUser(email: string): Promise<IUser | null> {
@@ -12,7 +12,7 @@ export default class UserService implements IUserService {
     return user;
   }
 
-  async createUser(body: IUser): Promise<IUser> {
+  async createUser(body: ICreateUser): Promise<IUser> {
     const user = await this.findUser(body.email);
 
     if (user) throw new createError.Conflict('this email allready exist');
@@ -26,7 +26,7 @@ export default class UserService implements IUserService {
     return newUser;
   }
 
-  async loginUser(body: IUser): Promise<IToken> {
+  async loginUser(body: ICreateUser): Promise<IToken> {
     const user = await this.findUser(body.email);
 
     if (!user) throw new createError.NotFound('user not exist');

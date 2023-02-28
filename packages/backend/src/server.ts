@@ -6,14 +6,18 @@ import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 import axios from 'axios';
 import cors from 'cors';
+import passport from 'passport';
 import AppRouter from './routes';
 import connectDB from './config/database';
+import { jwtStrategy } from './strategies/jwt.strategy';
 
 const app = express();
 const router = new AppRouter(app);
 // Connect to MongoDB
 connectDB();
 
+app.use(passport.initialize());
+passport.use(jwtStrategy);
 // Express configuration
 app.set('port', process.env.PORT || 4200);
 app.use(cors());

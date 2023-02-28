@@ -2,21 +2,21 @@ import Todo from '../models/Todo';
 import { ITodo, ITodoServices } from '../types/todos.type';
 
 export default class TodoService implements ITodoServices {
-  async findAll(): Promise<ITodo[]> {
-    const todos = await Todo.find();
+  async findAll(userId?: string): Promise<ITodo[]> {
+    const todos = await Todo.find({ userId });
 
     return todos;
   }
 
-  async findById(id: string): Promise<ITodo | null> {
-    const todo = await Todo.findById(id);
+  async findById(id: string, userId?: string): Promise<ITodo | null> {
+    const todo = await Todo.findOne({ _id: id, userId });
 
     return todo;
   }
 
-  async create(body: ITodo): Promise<ITodo> {
-    const createdTodo = await Todo.create(body);
-
+  async create(body: ITodo, userId?: string): Promise<ITodo> {
+    const createdTodo = await Todo.create({ ...body, userId });
+    console.log(userId);
     return createdTodo;
   }
 
@@ -26,8 +26,8 @@ export default class TodoService implements ITodoServices {
     return removedTodo;
   }
 
-  async updateById(id: string, body: ITodo): Promise<ITodo | null> {
-    const updatedTodo = await Todo.findOneAndUpdate({ _id: id }, body, { new: true });
+  async updateById(id: string, body: ITodo, userId?: string): Promise<ITodo | null> {
+    const updatedTodo = await Todo.findOneAndUpdate({ _id: id, userId }, body, { new: true });
 
     return updatedTodo;
   }

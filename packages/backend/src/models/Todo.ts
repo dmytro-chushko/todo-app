@@ -17,6 +17,11 @@ const todoSchema: Schema<ITodo> = new Schema({
   isCompleted: {
     type: Boolean,
     default: false
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 
