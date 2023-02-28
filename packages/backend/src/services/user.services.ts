@@ -1,5 +1,6 @@
 import createError from 'http-errors';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { cryptPass } from '../helpers/crypt-password';
 import User from '../models/User';
 import { IToken, IUser, IUserService } from '../types/user.type';
@@ -34,7 +35,14 @@ export default class UserService implements IUserService {
 
     if (!isPasswordCorrect) throw new createError.Unauthorized('email or password is not coorect');
 
-    const token = '';
+    const token = jwt.sign(
+      {
+        email: user.email,
+        userId: user.id
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRATION }
+    );
 
     return { token };
   }
