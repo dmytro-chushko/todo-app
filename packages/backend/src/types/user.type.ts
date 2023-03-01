@@ -19,13 +19,19 @@ export interface IJwtPayload {
   userId: string;
 }
 
+export interface INewPass {
+  password: string;
+}
+
 export interface IUserService {
   findUser(email: string): Promise<IUser | null>;
   createUser(body: ICreateUser): Promise<string>;
   loginUser(body: IUser): Promise<IToken>;
+  changePassword(body: INewPass, userId?: string): Promise<string>;
 }
 
 export interface IUserController {
   registerUser(req: CustomRequest<IUser>): Promise<string>;
   loginUser(req: CustomRequest<IUser>): Promise<IToken>;
+  changePassword(req: CustomRequest<INewPass>): Promise<string>;
 }

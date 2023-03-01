@@ -4,5 +4,6 @@ export const CRYPT = {
 
 export const ROUTE = {
   SIGNUP: '/register',
-  LOGIN: '/login'
+  LOGIN: '/login',
+  CHANGE_PASS: '/change-passs'
 };

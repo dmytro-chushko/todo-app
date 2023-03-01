@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { IUser } from '../../types/user.type';
-import { userSchema } from '../../validation/user.schema';
+import { INewPass, IUser } from '../../types/user.type';
+import { passSchema, userSchema } from '../../validation/user.schema';
 import { USER } from '../../constants';
 import userController from '../../controllers/user.controller';
 import { tryCatchMiddleware, validationMiddleware } from '../../middlewares';
@@ -20,6 +20,12 @@ router.post(
   USER.ROUTE.LOGIN,
   validationMiddleware<IUser>(userSchema),
   tryCatchMiddleware(userController.loginUser.bind(userController))
+);
+
+router.patch(
+  USER.ROUTE.CHANGE_PASS,
+  validationMiddleware<INewPass>(passSchema),
+  tryCatchMiddleware(userController.changePassword.bind(userController))
 );
 
 export default router;

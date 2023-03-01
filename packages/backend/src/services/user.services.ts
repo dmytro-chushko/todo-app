@@ -1,9 +1,7 @@
 import createError from 'http-errors';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { cryptPass } from '../helpers/crypt-password';
 import User from '../models/User';
-import { ICreateUser, IToken, IUser, IUserService } from '../types/user.type';
+import { ICreateUser, INewPass, IToken, IUser, IUserService } from '../types/user.type';
+import { isMatch, genToken, cryptPass } from '../helpers';
 
 export default class UserService implements IUserService {
   async findUser(email: string): Promise<IUser | null> {
@@ -31,19 +29,28 @@ export default class UserService implements IUserService {
 
     if (!user) throw new createError.NotFound('user is not exist');
 
-    const isPasswordCorrect = bcrypt.compareSync(body.password, user.password);
+    const isPasswordCorrect = isMatch(body.password, user.password);
 
     if (!isPasswordCorrect) throw new createError.Unauthorized('email or password is not coorect');
 
-    const token = jwt.sign(
-      {
-        email: user.email,
-        userId: user.id
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRATION }
-    );
+    const token = genToken(user);
 
     return { token };
+  }
+
+  async changePassword(body: INewPass, userId?: string): Promise<string> {
+    const user = await User.findById(userId);
+
+    if (!user) throw new createError.NotFound('user is not exist');
+
+    const isOldPassword = user && isMatch(body.password, user.password);
+
+    if (isOldPassword) {
+      throw new createError.BadRequest('Enter a password different from the old one');
+    }
+
+    await User.findByIdAndUpdate(userId, { password: body.password });
+
+    return 'Your password has been changed';
   }
 }

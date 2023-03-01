@@ -1,6 +1,6 @@
 import UserService from '../services/user.services';
 import { CustomRequest } from '../types/request.type';
-import { IToken, IUser, IUserController } from '../types/user.type';
+import { INewPass, IToken, IUser, IUserController } from '../types/user.type';
 
 export class UserController implements IUserController {
   constructor(private userService: UserService) {}
@@ -15,6 +15,12 @@ export class UserController implements IUserController {
     const token = await this.userService.loginUser(req.body);
 
     return token;
+  }
+
+  async changePassword(req: CustomRequest<INewPass>): Promise<string> {
+    const message = await this.userService.changePassword(req.body, req.user?._id);
+
+    return message;
   }
 }
 
