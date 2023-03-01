@@ -4,16 +4,18 @@ import { TextField } from '@mui/material';
 import { Button } from '../button';
 import { PURPOSE } from '../button/types';
 import { UserFormPurpose, IUserFormValues } from './types';
-import { FORM_INIT_VAL } from '../../consts/app-keys.const';
+import { FORM_INIT_VAL, ROUTER_KEYS } from '../../consts/app-keys.const';
 import { userSchema } from '../../validations/user-schema';
 
 import * as Styled from './user-from.styled';
 
 interface IUserFormProps {
   purpose: UserFormPurpose;
+  isLoading: boolean;
+  handleSubmit: (data: IUserFormValues) => void;
 }
 
-export const UserForm = ({ purpose }: IUserFormProps) => {
+export const UserForm = ({ purpose, handleSubmit, isLoading }: IUserFormProps) => {
   const formik = useFormik<IUserFormValues>({
     initialValues: {
       email: FORM_INIT_VAL.INPUT_EMAIL,
@@ -24,7 +26,7 @@ export const UserForm = ({ purpose }: IUserFormProps) => {
     },
     validationSchema: userSchema,
     onSubmit: (values, actions) => {
-      console.log(values);
+      handleSubmit(values);
       actions.resetForm();
     }
   });
@@ -70,9 +72,14 @@ export const UserForm = ({ purpose }: IUserFormProps) => {
           Back
         </Button>
         <Button purpose={PURPOSE.REGULAR} type="submit">
-          Submit
+          {isLoading ? 'Loading...' : 'Submit'}
         </Button>
       </Styled.ButtonContainer>
+      <Styled.FormLink
+        to={purpose === UserFormPurpose.LOGIN ? ROUTER_KEYS.REGISTER : ROUTER_KEYS.LOGIN}
+      >
+        Go to {purpose === UserFormPurpose.LOGIN ? 'registration' : 'login'}
+      </Styled.FormLink>
     </Styled.FormContainer>
   );
 };

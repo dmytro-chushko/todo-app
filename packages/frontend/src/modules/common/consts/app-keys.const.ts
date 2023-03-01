@@ -12,7 +12,8 @@ export const QUERY_KEYS = {
   TOKEN: 'TOKEN',
   STATISTIC: 'statistic',
   TRENDING: 'trending',
-  TODO: 'todos'
+  TODO: 'todos',
+  USER_SIGNUP: 'user/register'
 };
 
 // Backend Routes

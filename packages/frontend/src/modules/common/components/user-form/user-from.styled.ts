@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { SIZES, SPACES } from '../../../theme';
+import { Link } from 'react-router-dom';
+import { COLORS, SIZES, SPACES } from '../../../theme';
 
 export const FormContainer = styled.form`
   display: grid;
@@ -11,4 +12,13 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const FormLink = styled(Link)`
+  font-size: ${SPACES.l};
+  color: ${COLORS.buttonColor};
+
+  :hover {
+    color: ${COLORS.hoverButtonColor};
+  }
 `;
