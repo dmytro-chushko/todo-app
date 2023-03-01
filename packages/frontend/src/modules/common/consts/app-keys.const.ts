@@ -30,7 +30,8 @@ export const ROUTER_KEYS = {
   HOME: 'home',
   AUTHORIZED: 'authorized',
   TODO: '/todo',
-  ITEM: '/:id'
+  ITEM: '/:id',
+  REGISTER: '/signup'
 };
 
 export const FILTER_KEYS = {
@@ -47,3 +48,15 @@ export const MEDIA_KEYS = {
   MAX_TABLET: 'max-width: 767px',
   MIN_DESKTOP: 'min-width: 768px'
 };
+
+export const FORM_INIT_VAL = {
+  INPUT_EMAIL: '',
+  INPUT_PASS: '',
+  CONF_PASS: '',
+  CREATE_PASS: ''
+};
+
+// 'Input your email',
+//   INPUT_PASS: 'Input your password',
+//   CONF_PASS: 'Confirm your password',
+//   CREATE_PASS: 'Create your password'
