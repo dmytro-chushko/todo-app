@@ -13,7 +13,8 @@ export const QUERY_KEYS = {
   STATISTIC: 'statistic',
   TRENDING: 'trending',
   TODO: 'todos',
-  USER_SIGNUP: 'user/register'
+  USER_SIGNUP: 'user/register',
+  USER_LOGIN: 'user/login'
 };
 
 // Backend Routes
@@ -57,6 +58,8 @@ export const FORM_INIT_VAL = {
   CONF_PASS: '',
   CREATE_PASS: ''
 };
+
+export const TOKEN_STORAGE = 'token';
 
 // 'Input your email',
 //   INPUT_PASS: 'Input your password',

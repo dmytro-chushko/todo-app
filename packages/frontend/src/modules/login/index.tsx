@@ -1,12 +1,12 @@
 import React from 'react';
 import { UserFormPurpose } from '../common/components/user-form/types';
 import { UserForm } from '../common/components/user-form';
+import { useLogin } from '../common/hooks/login.hook';
 
 import * as Styled from '../common/common.styled';
-import { useSignup } from '../common/hooks/signup.hook';
 
 export const LoginPageContainer = () => {
-  const { handleSubmit, isLoading } = useSignup();
+  const { handleSubmit, isLoading } = useLogin();
 
   return (
     <Styled.StartContainer>

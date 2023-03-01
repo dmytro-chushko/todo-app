@@ -1,20 +1,21 @@
 import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
 import UserService from '../../services/user.service';
 import { IUserFormValues } from '../components/user-form/types';
+import { TOKEN_STORAGE } from '../consts/app-keys.const';
 import { errorHandler } from '../helpers';
+import { IToken } from '../types';
 
-interface IUseSignUp {
+interface IUseLogin {
   handleSubmit: (data: IUserFormValues) => void;
   isLoading: boolean;
 }
 
-export const useSignup = (): IUseSignUp => {
+export const useLogin = (): IUseLogin => {
   const userService = new UserService();
   const { mutate, isLoading } = useMutation({
-    mutationFn: userService.signup.bind(userService),
-    onSuccess: (data: string) => {
-      toast.success(`${data}. Now you can login`);
+    mutationFn: userService.login.bind(userService),
+    onSuccess: (data: IToken) => {
+      localStorage.setItem(TOKEN_STORAGE, data.token);
     },
     onError: errorHandler
   });
