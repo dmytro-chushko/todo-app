@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../../../common/components/button';
 import { PURPOSE } from '../../../common/components/button/types';
-import { useDeleteTodo } from '../../../hooks/delete-todo.hook';
+import { useDeleteTodo } from '../../../common/hooks/delete-todo.hook';
 
 interface IDeleteTodoBtn {
   id: string;

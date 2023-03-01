@@ -1,11 +1,11 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { TextField } from '@mui/material';
-import { Button } from '../../common/components/button';
-import { PURPOSE } from '../../common/components/button/types';
-import { UserFormPurpose, IUserFormValues } from '../types/registration.types';
-import { FORM_INIT_VAL } from '../../common/consts/app-keys.const';
-import { userSchema } from '../validations/user-schema';
+import { Button } from '../button';
+import { PURPOSE } from '../button/types';
+import { UserFormPurpose, IUserFormValues } from './types';
+import { FORM_INIT_VAL } from '../../consts/app-keys.const';
+import { userSchema } from '../../validations/user-schema';
 
 import * as Styled from './user-from.styled';
 

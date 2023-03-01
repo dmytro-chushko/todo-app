@@ -4,9 +4,9 @@ import { UserForm } from '../common/components/user-form';
 
 import * as Styled from '../common/common.styled';
 
-export const RegistrPageContainer = () => (
+export const LoginPageContainer = () => (
   <Styled.StartContainer>
-    <Styled.FormTitle>Registration</Styled.FormTitle>
-    <UserForm purpose={UserFormPurpose.REGISTER} />
+    <Styled.FormTitle>Login</Styled.FormTitle>
+    <UserForm purpose={UserFormPurpose.LOGIN} />
   </Styled.StartContainer>
 );

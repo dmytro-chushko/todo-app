@@ -31,7 +31,8 @@ export const ROUTER_KEYS = {
   AUTHORIZED: 'authorized',
   TODO: '/todo',
   ITEM: '/:id',
-  REGISTER: '/signup'
+  REGISTER: '/signup',
+  LOGIN: '/login'
 };
 
 export const FILTER_KEYS = {

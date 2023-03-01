@@ -1,8 +1,8 @@
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
-import { QUERY_KEYS } from '../common/consts/app-keys.const';
-import { queryClient } from '../react-query/qeury-client';
-import TodoService from '../services/todo.service';
+import { QUERY_KEYS } from '../consts/app-keys.const';
+import { queryClient } from '../../react-query/qeury-client';
+import TodoService from '../../services/todo.service';
 import { errorHandler } from '../helpers/error-hendler';
 
 interface IUseDeleteTodo {

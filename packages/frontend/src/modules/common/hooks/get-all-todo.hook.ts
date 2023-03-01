@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
-import TodoService from '../services/todo.service';
+import TodoService from '../../services/todo.service';
 import { errorHandler } from '../helpers/error-hendler';
-import { ITodo } from '../common/types/todo.types';
-import { QUERY_KEYS } from '../common/consts/app-keys.const';
+import { ITodo } from '../types/todo.types';
+import { QUERY_KEYS } from '../consts/app-keys.const';
 
 interface IUseGetTodo {
   isLoading: boolean;

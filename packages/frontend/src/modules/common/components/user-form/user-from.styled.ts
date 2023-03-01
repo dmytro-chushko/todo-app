@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SIZES, SPACES } from '../../theme';
+import { SIZES, SPACES } from '../../../theme';
 
 export const FormContainer = styled.form`
   display: grid;

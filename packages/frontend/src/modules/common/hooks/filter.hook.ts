@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { FILTER_KEYS } from '../common/consts/app-keys.const';
-import { ITodo } from '../common/types/todo.types';
+import { FILTER_KEYS } from '../consts/app-keys.const';
+import { ITodo } from '../types/todo.types';
 
 interface IUseFilter {
   filterValue: string | null;

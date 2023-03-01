@@ -1,9 +1,9 @@
 import React from 'react';
 import { useMediaQuery } from '@mui/material';
 import { TodoCard } from '../todo-card';
-import { useGetTodo } from '../../../hooks/get-all-todo.hook';
-import { useSearch } from '../../../hooks/search.hook';
-import { useFilter } from '../../../hooks/filter.hook';
+import { useGetTodo } from '../../../common/hooks/get-all-todo.hook';
+import { useSearch } from '../../../common/hooks/search.hook';
+import { useFilter } from '../../../common/hooks/filter.hook';
 import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
 
 import * as Styled from './todo-container.styled';

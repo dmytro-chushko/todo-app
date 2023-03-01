@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { IUserFormValues } from '../types/registration.types';
+import { IUserFormValues } from '../components/user-form/types';
 
 export const userSchema: yup.ObjectSchema<IUserFormValues> = yup.object({
   email: yup.string().email().required('email is required'),
