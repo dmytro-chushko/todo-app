@@ -4,7 +4,9 @@ import { ITodo, ITodoServices } from '../types/todos.type';
 
 export default class TodoService implements ITodoServices {
   private isAccess(isPrivate: boolean, todoId: string, userId: string): boolean {
-    if (isPrivate && todoId !== userId) throw new createError.Forbidden('Not owner');
+    if (isPrivate && String(todoId) !== String(userId)) {
+      throw new createError.Forbidden('Not owner');
+    }
 
     return true;
   }
@@ -20,7 +22,7 @@ export default class TodoService implements ITodoServices {
   async findById(id: string, userId?: string): Promise<ITodo | null> {
     const todo = await Todo.findOne({ _id: id });
 
-    if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
+    if (todo && userId) this.isAccess(todo.isPrivate, todo.userId, userId);
 
     return todo;
   }
@@ -34,7 +36,7 @@ export default class TodoService implements ITodoServices {
   async removeById(id: string, userId?: string): Promise<ITodo | null> {
     const todo = await Todo.findOne({ _id: id });
 
-    if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
+    if (todo && userId) this.isAccess(todo.isPrivate, todo.userId, userId);
 
     const removedTodo = await Todo.findOneAndDelete({ _id: id, userId });
 
@@ -44,9 +46,9 @@ export default class TodoService implements ITodoServices {
   async updateById(id: string, body: ITodo, userId?: string): Promise<ITodo | null> {
     const todo = await Todo.findOne({ _id: id });
 
-    if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
+    if (todo && userId) this.isAccess(todo.isPrivate, todo.userId, userId);
 
-    const updatedTodo = await Todo.findOneAndUpdate({ _id: id, userId }, body, { new: true });
+    const updatedTodo = await Todo.findOneAndUpdate({ _id: id }, body, { new: true });
 
     return updatedTodo;
   }
