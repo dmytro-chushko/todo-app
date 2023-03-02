@@ -1,7 +1,5 @@
 import { Application } from 'express';
 import { authMiddleware } from '../middlewares/auth.middleware';
-// import passport from 'passport';
-// import { authMiddleware } from '../middlewares/auth.middleware';
 import todosRouter from './api/todos.route';
 import userRouter from './api/user.route';
 
