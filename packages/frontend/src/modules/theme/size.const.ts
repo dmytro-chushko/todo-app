@@ -72,3 +72,5 @@ export const STAT_CONT = {
 export const USER_FORM = {
   WIDTH: '100%'
 };
+
+export const TITLE_MB = '50px';

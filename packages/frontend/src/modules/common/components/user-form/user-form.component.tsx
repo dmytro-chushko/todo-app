@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { Button } from '../button';
 import { PURPOSE } from '../button/types';
@@ -16,6 +17,7 @@ interface IUserFormProps {
 }
 
 export const UserForm = ({ purpose, handleSubmit, isLoading }: IUserFormProps) => {
+  const history = useHistory();
   const formik = useFormik<IUserFormValues>({
     initialValues: {
       email: FORM_INIT_VAL.INPUT_EMAIL,
@@ -68,7 +70,7 @@ export const UserForm = ({ purpose, handleSubmit, isLoading }: IUserFormProps) =
         />
       )}
       <Styled.ButtonContainer>
-        <Button purpose={PURPOSE.REGULAR} type="button">
+        <Button purpose={PURPOSE.REGULAR} type="button" onClick={() => history.goBack()}>
           Back
         </Button>
         <Button purpose={PURPOSE.REGULAR} type="submit">
