@@ -16,6 +16,7 @@
   "dependencies": {
     "@types/cors": "^2.8.13",
     "@types/http-errors": "^2.0.1",
+    "@types/mongodb": "^4.0.7",
     "@types/passport": "^1.0.12",
     "@types/passport-jwt": "^3.0.8",
     "axios": "^0.21.1",

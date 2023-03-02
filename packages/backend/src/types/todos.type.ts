@@ -1,3 +1,4 @@
+import { Condition } from 'mongodb';
 import { Document } from 'mongoose';
 import { CustomRequest } from './request.type';
 
@@ -16,6 +17,12 @@ export interface IResTodo {
   isPrivate: boolean;
   isCompleted: boolean;
   userId: string;
+}
+
+export interface IFilterTodos {
+  title?: Condition<string>;
+  isPrivate?: boolean;
+  isCompleted?: boolean;
 }
 
 export interface ITodoServices {

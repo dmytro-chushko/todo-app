@@ -2,6 +2,10 @@ import { Request } from 'express';
 
 export interface CustomRequest<T> extends Request {
   body: T;
+  query: {
+    search?: string;
+    status?: string;
+  };
 }
 
 export interface AuthCustomRequest<T> extends CustomRequest<T> {
