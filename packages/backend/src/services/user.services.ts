@@ -24,6 +24,12 @@ export default class UserService implements IUserService {
     return 'User has been created';
   }
 
+  async getUser(userId: string): Promise<IUser | null> {
+    const user = await User.findById(userId).select('_id email');
+
+    return user;
+  }
+
   async loginUser(body: ICreateUser): Promise<IToken> {
     const user = await this.findUser(body.email);
 
