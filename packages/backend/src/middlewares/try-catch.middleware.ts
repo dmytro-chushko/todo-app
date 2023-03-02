@@ -1,9 +1,10 @@
-import { Response, Request, NextFunction, RequestHandler } from 'express';
+import { Response, Request, NextFunction } from 'express';
 
 export const tryCatchMiddleware =
-  (handler: RequestHandler) => async (req: Request, res: Response, next: NextFunction) => {
+  <T, U>(handler: (req: T, res: Response, next: NextFunction) => Promise<U>) =>
+  async (req: Request | T, res: Response, next: NextFunction) => {
     try {
-      const result = await handler(req, res, next);
+      const result = await handler(req as T, res, next);
 
       res.send(result);
     } catch (error) {

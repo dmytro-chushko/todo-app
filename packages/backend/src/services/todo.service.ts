@@ -9,7 +9,7 @@ export default class TodoService implements ITodoServices {
     return true;
   }
 
-  async findAll(userId?: string): Promise<ITodo[]> {
+  async findAll(userId: string): Promise<ITodo[]> {
     const todos = await Todo.find()
       .or([{ isPrivate: false }, { isPrivate: true, userId }])
       .sort({ date: 'desc' });
@@ -17,7 +17,7 @@ export default class TodoService implements ITodoServices {
     return todos;
   }
 
-  async findById(id: string, userId?: string): Promise<ITodo | null> {
+  async findById(id: string, userId: string): Promise<ITodo | null> {
     const todo = await Todo.findOne({ _id: id });
 
     if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
@@ -25,13 +25,13 @@ export default class TodoService implements ITodoServices {
     return todo;
   }
 
-  async create(body: ITodo, userId?: string): Promise<ITodo> {
+  async create(body: ITodo, userId: string): Promise<ITodo> {
     const createdTodo = await Todo.create({ ...body, userId });
 
     return createdTodo;
   }
 
-  async removeById(id: string, userId?: string): Promise<ITodo | null> {
+  async removeById(id: string, userId: string): Promise<ITodo | null> {
     const todo = await Todo.findOne({ _id: id });
 
     if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
@@ -41,7 +41,7 @@ export default class TodoService implements ITodoServices {
     return removedTodo;
   }
 
-  async updateById(id: string, body: ITodo, userId?: string): Promise<ITodo | null> {
+  async updateById(id: string, body: ITodo, userId: string): Promise<ITodo | null> {
     const todo = await Todo.findOne({ _id: id });
 
     if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
