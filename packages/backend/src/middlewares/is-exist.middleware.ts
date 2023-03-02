@@ -7,6 +7,7 @@ export const isExistMiddleware =
   async (req: CustomRequest<T>, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
+
       const searchResult = await model.findById(id);
 
       if (!searchResult) throw new Error();

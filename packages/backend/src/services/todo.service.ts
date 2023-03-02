@@ -1,33 +1,52 @@
+import createError from 'http-errors';
 import Todo from '../models/Todo';
 import { ITodo, ITodoServices } from '../types/todos.type';
 
 export default class TodoService implements ITodoServices {
-  async findAll(): Promise<ITodo[]> {
-    const todos = await Todo.find();
+  private isAccess(isPrivate: boolean, todoId: string, userId: string): boolean {
+    if (isPrivate && todoId !== userId) throw new createError.Forbidden('Not owner');
+
+    return true;
+  }
+
+  async findAll(userId: string): Promise<ITodo[]> {
+    const todos = await Todo.find()
+      .or([{ isPrivate: false }, { isPrivate: true, userId }])
+      .sort({ date: 'desc' });
 
     return todos;
   }
 
-  async findById(id: string): Promise<ITodo | null> {
-    const todo = await Todo.findById(id);
+  async findById(id: string, userId: string): Promise<ITodo | null> {
+    const todo = await Todo.findOne({ _id: id });
+
+    if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
 
     return todo;
   }
 
-  async create(body: ITodo): Promise<ITodo> {
-    const createdTodo = await Todo.create(body);
+  async create(body: ITodo, userId: string): Promise<ITodo> {
+    const createdTodo = await Todo.create({ ...body, userId });
 
     return createdTodo;
   }
 
-  async removeById(id: string): Promise<ITodo | null> {
-    const removedTodo = await Todo.findByIdAndDelete({ _id: id });
+  async removeById(id: string, userId: string): Promise<ITodo | null> {
+    const todo = await Todo.findOne({ _id: id });
+
+    if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
+
+    const removedTodo = await Todo.findOneAndDelete({ _id: id, userId });
 
     return removedTodo;
   }
 
-  async updateById(id: string, body: ITodo): Promise<ITodo | null> {
-    const updatedTodo = await Todo.findOneAndUpdate({ _id: id }, body, { new: true });
+  async updateById(id: string, body: ITodo, userId: string): Promise<ITodo | null> {
+    const todo = await Todo.findOne({ _id: id });
+
+    if (todo && userId) this.isAccess(todo.isPrivate, todo._id, userId);
+
+    const updatedTodo = await Todo.findOneAndUpdate({ _id: id, userId }, body, { new: true });
 
     return updatedTodo;
   }
