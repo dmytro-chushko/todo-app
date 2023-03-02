@@ -1,8 +1,8 @@
 import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
 import UserService from '../../services/user.service';
 import { IUserFormValues } from '../components/user-form/types';
 import { errorHandler } from '../helpers';
+import { signupSuccessHandler } from '../helpers/success-handler';
 
 interface IUseSignUp {
   handleSubmit: (data: IUserFormValues) => void;
@@ -13,9 +13,7 @@ export const useSignup = (): IUseSignUp => {
   const userService = new UserService();
   const { mutate, isLoading } = useMutation({
     mutationFn: userService.signup.bind(userService),
-    onSuccess: (data: string) => {
-      toast.success(`${data}. Now you can login`);
-    },
+    onSuccess: signupSuccessHandler,
     onError: errorHandler
   });
 
