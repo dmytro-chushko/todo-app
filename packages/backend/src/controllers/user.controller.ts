@@ -23,8 +23,8 @@ export class UserController implements IUserController {
     return user;
   }
 
-  async changePassword(req: CustomRequest<INewPass>): Promise<string> {
-    const message = await this.userService.changePassword(req.body, req.user?._id);
+  async changePassword(req: AuthCustomRequest<INewPass>): Promise<string> {
+    const message = await this.userService.changePassword(req.body, req.user._id);
 
     return message;
   }

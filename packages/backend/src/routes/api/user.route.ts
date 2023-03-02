@@ -29,8 +29,9 @@ router.post(
   tryCatchMiddleware(userController.loginUser.bind(userController))
 );
 
-router.patch(
+router.put(
   USER.ROUTE.CHANGE_PASS,
+  authMiddleware,
   validationMiddleware<INewPass>(passSchema),
   tryCatchMiddleware(userController.changePassword.bind(userController))
 );

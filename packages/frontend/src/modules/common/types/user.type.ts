@@ -6,3 +6,12 @@ export interface IUserAuth {
 export interface IToken {
   token: string;
 }
+
+export interface IPass {
+  password: string;
+}
+
+export interface IPassForm {
+  oldPassword: string;
+  newPassword: string;
+}
