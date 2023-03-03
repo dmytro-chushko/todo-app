@@ -12,16 +12,18 @@ interface ISearchFieldProps {
 export const SearchField = ({ setFilter }: ISearchFieldProps) => {
   const [searchTerm, setSearchTerm] = useState<string | null>('');
 
+  const handleClick = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    setFilter((prev) => ({ ...prev, search: e.target.value }));
+  };
+
   return (
     <Styled.SearchInput
       id="input-with-icon-textfield"
       label="Search"
       size="small"
       value={searchTerm}
-      onChange={(e) => {
-        setSearchTerm(e.target.value);
-        setFilter((prev) => ({ ...prev, search: e.target.value }));
-      }}
+      onChange={handleClick}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

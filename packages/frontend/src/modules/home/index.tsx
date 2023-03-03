@@ -10,20 +10,22 @@ import * as Styled from './home.styled';
 const HomePageContainer = () => {
   const history = useHistory();
 
+  const handleClick = (message: string) => history.push(message);
+
   return (
     <CommonStyles.StartContainer home>
       <Styled.HomeTitle>App Todo</Styled.HomeTitle>
       <Button
         purpose={PURPOSE.REGULAR}
         type="button"
-        onClick={() => history.push(ROUTER_KEYS.LOGIN)}
+        onClick={() => handleClick(ROUTER_KEYS.LOGIN)}
       >
         Login
       </Button>
       <Button
         purpose={PURPOSE.REGULAR}
         type="button"
-        onClick={() => history.push(ROUTER_KEYS.REGISTER)}
+        onClick={() => handleClick(ROUTER_KEYS.REGISTER)}
       >
         Signup
       </Button>
