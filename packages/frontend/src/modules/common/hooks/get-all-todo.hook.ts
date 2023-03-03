@@ -13,7 +13,7 @@ interface IUseGetTodo {
 export const useGetTodo = (filter: IFilter): IUseGetTodo => {
   const todoService = new TodoService();
   const { isLoading, data } = useQuery({
-    queryKey: [QUERY_KEYS.TODO],
+    queryKey: [QUERY_KEYS.TODO, filter],
     queryFn: () => todoService.getTodos(`search=${filter.search}&status=${filter.status}`),
     onError: errorHandler
   });

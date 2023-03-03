@@ -7,26 +7,16 @@ import { SearchField } from '../search-field';
 import * as Styled from './operations-bar.styled';
 
 interface IOperationsBarProps {
-  searchTerm: string;
-  setSearchTernm: React.Dispatch<React.SetStateAction<string>>;
-  filterValue: string | null;
-  setFilterValue: React.Dispatch<React.SetStateAction<string | null>>;
   setFilter: React.Dispatch<React.SetStateAction<IFilter>>;
 }
 
-export const OperationsBar = ({
-  searchTerm,
-  setSearchTernm,
-  filterValue,
-  setFilterValue,
-  setFilter
-}: IOperationsBarProps) => (
+export const OperationsBar = ({ setFilter }: IOperationsBarProps) => (
   <Styled.OperatoionsContainer>
     <Styled.OperationsWrapper>
-      <SearchField searchTerm={searchTerm} setSearchTernm={setSearchTernm} setFilter={setFilter} />
+      <SearchField setFilter={setFilter} />
       <AddTodo />
     </Styled.OperationsWrapper>
-    <FilterBar setFilterValue={setFilterValue} filterValue={filterValue} setFilter={setFilter} />
+    <FilterBar setFilter={setFilter} />
   </Styled.OperatoionsContainer>
 );
 
