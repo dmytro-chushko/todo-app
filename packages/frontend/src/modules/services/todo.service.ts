@@ -4,23 +4,23 @@ import HttpService from './http.service';
 
 class TodoService extends HttpService {
   getTodos() {
-    return this.get<ITodo[]>(QUERY_KEYS.TODO);
+    return this.get<ITodo[]>(QUERY_KEYS.TODO, true);
   }
 
   getTodoById(id: string) {
-    return this.get<ITodo>(`${QUERY_KEYS.TODO}/${id}`);
+    return this.get<ITodo>(`${QUERY_KEYS.TODO}/${id}`, true);
   }
 
   addTodo(body: IAddTodo): Promise<ITodo> {
-    return this.add<ITodo, IAddTodo>(QUERY_KEYS.TODO, body);
+    return this.add<ITodo, IAddTodo>(QUERY_KEYS.TODO, body, true);
   }
 
   editTodo({ id, ...body }: IEditTodoParams): Promise<ITodo> {
-    return this.put<ITodo, Omit<IEditTodoParams, 'id'>>(`${QUERY_KEYS.TODO}/${id}`, body);
+    return this.put<ITodo, Omit<IEditTodoParams, 'id'>>(`${QUERY_KEYS.TODO}/${id}`, body, true);
   }
 
   deleteTodos(id: string): Promise<ITodo> {
-    return this.delete<ITodo>(`${QUERY_KEYS.TODO}/${id}`);
+    return this.delete<ITodo>(`${QUERY_KEYS.TODO}/${id}`, true);
   }
 }
 

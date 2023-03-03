@@ -1,9 +1,7 @@
 import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
-import { QUERY_KEYS } from '../common/consts/app-keys.const';
-import { queryClient } from '../react-query/qeury-client';
-import TodoService from '../services/todo.service';
+import TodoService from '../../services/todo.service';
 import { errorHandler } from '../helpers/error-hendler';
+import { todoSuccessHandler } from '../helpers/todo-success-handler';
 
 interface IUseDeleteTodo {
   handleDelete: () => void;
@@ -12,12 +10,9 @@ interface IUseDeleteTodo {
 
 export const useDeleteTodo = (id: string): IUseDeleteTodo => {
   const todoService = new TodoService();
-  const { mutate, isLoading, isSuccess } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: todoService.deleteTodos.bind(todoService),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODO] });
-      if (isSuccess) toast.success('Your task has been deleted');
-    },
+    onSuccess: () => todoSuccessHandler('Your task has been deleted'),
     onError: errorHandler
   });
 

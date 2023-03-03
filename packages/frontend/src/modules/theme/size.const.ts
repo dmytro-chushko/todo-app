@@ -63,3 +63,14 @@ export const SLIDER = {
   TO_SCROLL: 1,
   SPEED: 500
 };
+
+export const STAT_CONT = {
+  WIDTH: '100%',
+  HEIGHT: '100vh'
+};
+
+export const USER_FORM = {
+  WIDTH: '100%'
+};
+
+export const TITLE_MB = '50px';

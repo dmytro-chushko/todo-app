@@ -1,6 +1,6 @@
 import React from 'react';
 import { CircularProgress } from '@mui/material';
-import { useSetIsComplete } from '../../../hooks/set-is-complete.hook';
+import { useSetIsComplete } from '../../hooks/set-is-complete.hook';
 
 import * as Styled from './switcher.styled';
 import { ValuName } from '../../types/components.types';

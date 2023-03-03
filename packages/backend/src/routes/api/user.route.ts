@@ -4,12 +4,19 @@ import { passSchema, userSchema } from '../../validation/user.schema';
 import { USER } from '../../constants';
 import userController from '../../controllers/user.controller';
 import { tryCatchMiddleware, validationMiddleware } from '../../middlewares';
+import { authMiddleware } from '../../middlewares/auth.middleware';
 
 const router: Router = Router();
 
 // @route   POST api/user
 // @desc    Register user given their email and password, returns the token upon successful registration
 // @access  Public
+router.get(
+  USER.ROUTE.USER,
+  authMiddleware,
+  tryCatchMiddleware(userController.getUser.bind(userController))
+);
+
 router.post(
   USER.ROUTE.SIGNUP,
   validationMiddleware<IUser>(userSchema),
@@ -22,8 +29,9 @@ router.post(
   tryCatchMiddleware(userController.loginUser.bind(userController))
 );
 
-router.patch(
+router.put(
   USER.ROUTE.CHANGE_PASS,
+  authMiddleware,
   validationMiddleware<INewPass>(passSchema),
   tryCatchMiddleware(userController.changePassword.bind(userController))
 );

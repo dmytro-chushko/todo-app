@@ -24,6 +24,12 @@ export default class UserService implements IUserService {
     return 'User has been created';
   }
 
+  async getUser(userId: string): Promise<IUser | null> {
+    const user = await User.findById(userId).select('_id email');
+
+    return user;
+  }
+
   async loginUser(body: ICreateUser): Promise<IToken> {
     const user = await this.findUser(body.email);
 
@@ -38,7 +44,7 @@ export default class UserService implements IUserService {
     return { token };
   }
 
-  async changePassword(body: INewPass, userId?: string): Promise<string> {
+  async changePassword(body: INewPass, userId: string): Promise<string> {
     const user = await User.findById(userId);
 
     if (!user) throw new createError.NotFound('user is not exist');
@@ -49,7 +55,9 @@ export default class UserService implements IUserService {
       throw new createError.BadRequest('Enter a password different from the old one');
     }
 
-    await User.findByIdAndUpdate(userId, { password: body.password });
+    const cryptedPassword = cryptPass(body.password);
+
+    await User.findByIdAndUpdate(userId, { password: cryptedPassword });
 
     return 'Your password has been changed';
   }
