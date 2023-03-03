@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 import Todo from '../models/Todo';
-import { ITodo, ITodoServices } from '../types/todos.type';
+import { IFilterTodos, ITodo, ITodoServices } from '../types/todos.type';
 
 export default class TodoService implements ITodoServices {
   private isAccess(isPrivate: boolean, todoId: string, userId: string): boolean {
@@ -11,10 +11,32 @@ export default class TodoService implements ITodoServices {
     return true;
   }
 
-  async findAll(userId: string): Promise<ITodo[]> {
-    const todos = await Todo.find()
+  async findAll(userId: string, search?: string, status?: string): Promise<ITodo[]> {
+    const filter: IFilterTodos = {};
+
+    if (search) {
+      filter.title = { $regex: search, $options: 'i' };
+    }
+
+    switch (status) {
+      case 'isPrivate':
+        filter.isPrivate = true;
+        break;
+
+      case 'isPublic':
+        filter.isPrivate = false;
+        break;
+
+      case 'isCompleted':
+        filter.isCompleted = true;
+        break;
+      default:
+        break;
+    }
+
+    const todos = await Todo.find(filter)
       .or([{ isPrivate: false }, { isPrivate: true, userId }])
-      .sort({ date: 'desc' });
+      .sort({ updateAt: -1, createAt: -1 });
 
     return todos;
   }

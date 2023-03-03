@@ -8,7 +8,7 @@ import { ITodoFormValues } from '../../../common/types/todo.types';
 import { PURPOSE } from '../../../common/components/button/types';
 
 import * as Styled from './controls.styled';
-import { ValuName } from '../../../common/types/components.types';
+import { ValueName } from '../../../common/types/components.types';
 
 interface IControlsProps {
   id: string;
@@ -34,7 +34,7 @@ export const Controls = ({ id, isCompleted, initialValues }: IControlsProps) => 
         <DeleteTodoBtn id={id} />
       </Styled.CtrlWrapper>
       <Styled.CtrlWrapper>
-        <SwitcherIsValue id={id} isValue={isCompleted} valueName={ValuName.COMPLETE} />
+        <SwitcherIsValue id={id} isValue={isCompleted} valueName={ValueName.COMPLETE} />
         <EditTodo id={id} initialValues={initialValues} />
       </Styled.CtrlWrapper>
     </Styled.CtrlContainer>

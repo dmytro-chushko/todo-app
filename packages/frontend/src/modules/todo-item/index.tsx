@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Container } from '@mui/material';
 import { Header } from '../common/components/header';
-
-import * as Styled from './todo-item.styled';
 import { Button } from '../common/components/button';
 import { PURPOSE } from '../common/components/button/types';
 import { useGetTodoById } from '../common/hooks/get-one-todo.hook';
 import { QUERY_KEYS, ROUTER_KEYS } from '../common/consts/app-keys.const';
 import { SwitchersBlock } from './components/switchers-block';
 import { queryClient } from '../react-query/qeury-client';
+
+import * as Styled from './todo-item.styled';
 
 interface IParams {
   id: string;

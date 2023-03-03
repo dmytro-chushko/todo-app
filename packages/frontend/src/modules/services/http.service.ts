@@ -22,12 +22,6 @@ class HttpSerivce {
     return `${this.baseUrl}/${this.apiVersion}/${url}`;
   }
 
-  private populateTokenToHeaderConfig() {
-    return {
-      Authorization: `Bearer ${localStorage.getItem(TOKEN_STORAGE) || ''}`
-    };
-  }
-
   private setTokenIfAuth(isAuth?: boolean) {
     const config = { headers: { Authorization: '' } };
 

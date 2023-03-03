@@ -15,3 +15,8 @@ export interface IPassForm {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface IGetUser {
+  _id: string;
+  email: string;
+}

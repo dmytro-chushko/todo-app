@@ -1,6 +1,6 @@
 import React from 'react';
 import { SwitcherIsValue } from '../../../common/components/switcher';
-import { ValuName } from '../../../common/types/components.types';
+import { ValueName } from '../../../common/types/components.types';
 
 import * as Styled from './switchers-block.styled';
 
@@ -18,7 +18,7 @@ export const SwitchersBlock = ({ id, isCompleted, isPrivate, isLoading }: ISwitc
       <SwitcherIsValue
         id={id}
         isValue={isCompleted}
-        valueName={ValuName.COMPLETE}
+        valueName={ValueName.COMPLETE}
         isPageLoading={isLoading}
       />
     </Styled.SwitcherWrapper>
@@ -27,7 +27,7 @@ export const SwitchersBlock = ({ id, isCompleted, isPrivate, isLoading }: ISwitc
       <SwitcherIsValue
         id={id}
         isValue={isPrivate}
-        valueName={ValuName.PRIVATE}
+        valueName={ValueName.PRIVATE}
         isPageLoading={isLoading}
       />
     </Styled.SwitcherWrapper>

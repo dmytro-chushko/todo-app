@@ -2,34 +2,30 @@ import React from 'react';
 import { useMediaQuery } from '@mui/material';
 import { TodoCard } from '../todo-card';
 import { useGetTodo } from '../../../common/hooks/get-all-todo.hook';
-import { useSearch } from '../../../common/hooks/search.hook';
-import { useFilter } from '../../../common/hooks/filter.hook';
 import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
 
 import * as Styled from './todo-container.styled';
 import { TabletSlider } from '../tablet-slider';
 import { DesktopTable } from '../desktop-table';
+import { IFilter } from '../../types/todo-list.types';
 
 interface ITodoContainer {
-  searchTerm: string;
-  filterValue: string | null;
+  filter: IFilter;
 }
 
-export const TodoContainer = ({ searchTerm, filterValue }: ITodoContainer) => {
+export const TodoContainer = ({ filter }: ITodoContainer) => {
   const isTablet = useMediaQuery(`(${MEDIA_KEYS.MIN_TABLET}) and (${MEDIA_KEYS.MAX_TABLET})`);
   const isDesktop = useMediaQuery(`(${MEDIA_KEYS.MIN_DESKTOP})`);
-  const { data, isLoading } = useGetTodo();
-  const searchedData = useSearch({ data, searchTerm });
-  const filteredData = useFilter({ data: searchedData, filterValue });
+  const { data, isLoading } = useGetTodo(filter);
 
-  if (isDesktop) return <DesktopTable data={filteredData} isLoading={isLoading} />;
+  if (isDesktop) return <DesktopTable data={data} isLoading={isLoading} />;
 
-  if (isTablet) return <TabletSlider data={filteredData} isLoading={isLoading} />;
+  if (isTablet) return <TabletSlider data={data} isLoading={isLoading} />;
 
   return (
     <Styled.TodoCardList>
-      {filteredData &&
-        filteredData.map(({ _id, title, description, isPrivate, isCompleted }) => (
+      {data &&
+        data.map(({ _id, title, description, isPrivate, isCompleted }) => (
           <TodoCard
             key={_id}
             id={_id}

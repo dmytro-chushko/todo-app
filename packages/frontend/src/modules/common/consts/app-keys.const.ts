@@ -15,7 +15,9 @@ export const QUERY_KEYS = {
   TODO: 'todos',
   USER_SIGNUP: 'user/register',
   USER_LOGIN: 'user/login',
-  CHANGE_PASS: 'user/change-pass'
+  CHANGE_PASS: 'user/change-pass',
+  USER_CURRENT: 'user/current',
+  USER: 'user'
 };
 
 // Backend Routes

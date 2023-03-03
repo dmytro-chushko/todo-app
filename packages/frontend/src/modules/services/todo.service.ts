@@ -3,8 +3,8 @@ import { IAddTodo, IEditTodoParams, ITodo } from '../common/types/todo.types';
 import HttpService from './http.service';
 
 class TodoService extends HttpService {
-  getTodos() {
-    return this.get<ITodo[]>(QUERY_KEYS.TODO, true);
+  getTodos(query: string) {
+    return this.get<ITodo[]>(`${QUERY_KEYS.TODO}?${query}`, true);
   }
 
   getTodoById(id: string) {
