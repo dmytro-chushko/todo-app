@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { TableRow, TableCell, tableCellClasses, TableContainer } from '@mui/material';
-import { COLORS, SIZES } from '../../../theme';
+import { TableRow, TableCell, tableCellClasses, TableContainer, Pagination } from '@mui/material';
+import { COLORS, SIZES, SPACES } from '../../../theme';
 
 export const TodoTableCell = styled(TableCell)`
   :nth-of-type(2) {
@@ -25,4 +25,11 @@ export const TodoRableRow = styled(TableRow)`
 
 export const TodoTableContainer = styled(TableContainer)`
   border-radius: ${SIZES.BORDER_RADIUS};
+`;
+
+export const TodoPagination = styled(Pagination)`
+  display: flex;
+  justify-content: center;
+  padding-top: ${SPACES.s};
+  padding-bottom: ${SPACES.s};
 `;

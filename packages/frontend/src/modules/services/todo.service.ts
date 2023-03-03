@@ -1,10 +1,10 @@
 import { QUERY_KEYS } from '../common/consts/app-keys.const';
-import { IAddTodo, IEditTodoParams, ITodo } from '../common/types/todo.types';
+import { IAddTodo, IEditTodoParams, IPaginatedTodos, ITodo } from '../common/types/todo.types';
 import HttpService from './http.service';
 
 class TodoService extends HttpService {
   getTodos(query: string) {
-    return this.get<ITodo[]>(`${QUERY_KEYS.TODO}?${query}`, true);
+    return this.get<IPaginatedTodos>(`${QUERY_KEYS.TODO}?${query}`, true);
   }
 
   getTodoById(id: string) {

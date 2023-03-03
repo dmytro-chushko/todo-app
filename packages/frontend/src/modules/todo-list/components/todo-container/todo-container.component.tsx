@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { TodoCard } from '../todo-card';
 import { useGetTodo } from '../../../common/hooks/get-all-todo.hook';
@@ -16,16 +16,26 @@ interface ITodoContainer {
 export const TodoContainer = ({ filter }: ITodoContainer) => {
   const isTablet = useMediaQuery(`(${MEDIA_KEYS.MIN_TABLET}) and (${MEDIA_KEYS.MAX_TABLET})`);
   const isDesktop = useMediaQuery(`(${MEDIA_KEYS.MIN_DESKTOP})`);
-  const { data, isLoading } = useGetTodo(filter);
+  const [page, setPage] = useState<number>(1);
+  const { data, isLoading } = useGetTodo(filter, page);
 
-  if (isDesktop) return <DesktopTable data={data} isLoading={isLoading} />;
+  if (isDesktop) {
+    return (
+      <DesktopTable
+        data={data?.todos}
+        totalPages={data?.totalPages}
+        setPage={setPage}
+        isLoading={isLoading}
+      />
+    );
+  }
 
-  if (isTablet) return <TabletSlider data={data} isLoading={isLoading} />;
+  if (isTablet) return <TabletSlider data={data?.todos} isLoading={isLoading} />;
 
   return (
     <Styled.TodoCardList>
       {data &&
-        data.map(({ _id, title, description, isPrivate, isCompleted }) => (
+        data.todos.map(({ _id, title, description, isPrivate, isCompleted }) => (
           <TodoCard
             key={_id}
             id={_id}

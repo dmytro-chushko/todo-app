@@ -19,7 +19,6 @@ export default class TodoService implements ITodoServices {
     page?: string
   ): Promise<IPaginatedTodo> {
     const skip = (Number(page) - 1) * PAGINATION_LIMIT;
-    console.log(page);
     const filter: IFilterTodos = {};
 
     if (search) {

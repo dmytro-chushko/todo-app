@@ -8,9 +8,11 @@ import * as Styled from './desktop.styled';
 interface IDesktopTable {
   data?: ITodo[];
   isLoading: boolean;
+  totalPages?: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const DesktopTable = ({ data, isLoading }: IDesktopTable) => {
+export const DesktopTable = ({ data, totalPages, setPage, isLoading }: IDesktopTable) => {
   if (!isLoading) {
     return (
       <Styled.TodoTableContainer>
@@ -39,6 +41,12 @@ export const DesktopTable = ({ data, isLoading }: IDesktopTable) => {
               ))}
           </TableBody>
         </Table>
+        <Styled.TodoPagination
+          count={totalPages}
+          shape="rounded"
+          variant="outlined"
+          onChange={(_, page) => setPage(page)}
+        />
       </Styled.TodoTableContainer>
     );
   }

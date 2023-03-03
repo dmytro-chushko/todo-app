@@ -27,3 +27,9 @@ export interface ITodo {
   isPrivate: boolean;
   isCompleted: boolean;
 }
+
+export interface IPaginatedTodos {
+  todos: ITodo[];
+  total: number;
+  totalPages: number;
+}
