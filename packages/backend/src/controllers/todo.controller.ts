@@ -1,11 +1,11 @@
 import TodoService from '../services/todo.service';
-import { ITodo, ITodoControllers } from '../types/todos.type';
+import { IPaginatedTodo, ITodo, ITodoControllers } from '../types/todos.type';
 import { AuthCustomRequest } from '../types/request.type';
 
 export class TodoController implements ITodoControllers {
   constructor(private todoService: TodoService) {}
 
-  async getAllTodo(req: AuthCustomRequest<ITodo>): Promise<ITodo[]> {
+  async getAllTodo(req: AuthCustomRequest<ITodo>): Promise<IPaginatedTodo> {
     const { search, status, page } = req.query;
     const todos = await this.todoService.findAll(req.user._id, search, status, page);
 

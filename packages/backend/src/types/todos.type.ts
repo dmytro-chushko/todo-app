@@ -25,8 +25,14 @@ export interface IFilterTodos {
   isCompleted?: boolean;
 }
 
+export interface IPaginatedTodo {
+  todos: ITodo[];
+  total: number;
+  totalPages: number;
+}
+
 export interface ITodoServices {
-  findAll(userId: string): Promise<ITodo[]>;
+  findAll(userId: string): Promise<IPaginatedTodo>;
   findById(id: string, userId: string): Promise<ITodo | null>;
   create(body: ITodo, id: string): Promise<ITodo | null>;
   removeById(id: string, userId: string): Promise<ITodo | null>;
@@ -34,7 +40,7 @@ export interface ITodoServices {
 }
 
 export interface ITodoControllers {
-  getAllTodo(req: CustomRequest<ITodo>): Promise<ITodo[]>;
+  getAllTodo(req: CustomRequest<ITodo>): Promise<IPaginatedTodo>;
   getTodoById(req: CustomRequest<ITodo>): Promise<ITodo | null>;
   createTodo(req: CustomRequest<ITodo>): Promise<ITodo>;
   updateTodo(req: CustomRequest<ITodo>): Promise<ITodo | null>;
