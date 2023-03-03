@@ -1,10 +1,8 @@
 import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
-import { QUERY_KEYS } from '../consts/app-keys.const';
-import { queryClient } from '../../react-query/qeury-client';
 import TodoService from '../../services/todo.service';
 import { errorHandler } from '../helpers/error-hendler';
 import { ITodoFormValues } from '../types/todo.types';
+import { todoSuccessHandler } from '../helpers/todo-success-handler';
 
 interface IUseEditTodoParams {
   id: string;
@@ -20,10 +18,7 @@ export const useEditTodo = ({ id, handleClose }: IUseEditTodoParams): IUseEditTo
   const todoService = new TodoService();
   const { mutate, isLoading } = useMutation({
     mutationFn: todoService.editTodo.bind(todoService),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODO] });
-      toast.success('Task has been updated');
-    },
+    onSuccess: () => todoSuccessHandler('Task has been updated'),
     onError: errorHandler
   });
 
