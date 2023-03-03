@@ -36,7 +36,7 @@ export default class TodoService implements ITodoServices {
 
     const todos = await Todo.find(filter)
       .or([{ isPrivate: false }, { isPrivate: true, userId }])
-      .sort({ date: 'asc' });
+      .sort({ updateAt: -1, createAt: -1 });
 
     return todos;
   }

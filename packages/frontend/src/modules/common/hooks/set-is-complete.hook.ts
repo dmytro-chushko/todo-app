@@ -1,10 +1,8 @@
 import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
-import { QUERY_KEYS } from '../consts/app-keys.const';
-import { ValuName } from '../types/components.types';
-import { queryClient } from '../../react-query/qeury-client';
+import { ValueName } from '../types/components.types';
 import TodoService from '../../services/todo.service';
 import { errorHandler } from '../helpers/error-hendler';
+import { switchersSuccessHandler } from '../helpers/switchers-success-handler';
 
 interface IUseSetIsComplete {
   handleSwitch: () => void;
@@ -14,7 +12,7 @@ interface IUseSetIsComplete {
 interface IUseSetIsValueParams {
   id: string;
   isValue: boolean;
-  valueName: ValuName;
+  valueName: ValueName;
 }
 
 export const useSetIsComplete = ({
@@ -25,22 +23,13 @@ export const useSetIsComplete = ({
   const todoService = new TodoService();
   const { mutate, isLoading } = useMutation({
     mutationFn: todoService.editTodo.bind(todoService),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODO] });
-      if (valueName === ValuName.COMPLETE) {
-        toast.success(`Your task has been ${isValue ? 'completed' : 'started'}`);
-      }
-
-      if (valueName === ValuName.PRIVATE) {
-        toast.success(`Your task has been switched to ${isValue ? 'Private' : 'Public'}`);
-      }
-    },
+    onSuccess: () => switchersSuccessHandler(valueName, isValue),
     onError: errorHandler
   });
 
   const handleSwitch = () => {
-    if (valueName === ValuName.COMPLETE) mutate({ id, isCompleted: !isValue });
-    if (valueName === ValuName.PRIVATE) mutate({ id, isPrivate: !isValue });
+    if (valueName === ValueName.COMPLETE) mutate({ id, isCompleted: !isValue });
+    if (valueName === ValueName.PRIVATE) mutate({ id, isPrivate: !isValue });
   };
 
   return {

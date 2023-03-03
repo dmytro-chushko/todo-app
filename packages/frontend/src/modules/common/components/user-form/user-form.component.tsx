@@ -18,6 +18,7 @@ interface IUserFormProps {
 
 export const UserForm = ({ purpose, handleSubmit, isLoading }: IUserFormProps) => {
   const history = useHistory();
+
   const formik = useFormik<IUserFormValues>({
     initialValues: {
       email: FORM_INIT_VAL.INPUT_EMAIL,

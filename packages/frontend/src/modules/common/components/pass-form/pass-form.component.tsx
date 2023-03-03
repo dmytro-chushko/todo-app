@@ -6,11 +6,13 @@ import { PURPOSE } from '../button/types';
 import { IPassForm } from '../../types';
 import { useChangePass } from '../../hooks/change-pass.hook';
 import { useLogout } from '../../hooks/loout.hook';
+import { useGetUser } from '../../hooks/get-user.hook';
 
 import * as Styled from './pass-form.styled';
 
 export const PassForm = () => {
   const logout = useLogout();
+  const { data, isLoading: isFetchingUser } = useGetUser();
   const { handleSubmit, isLoading } = useChangePass();
   const formik = useFormik<IPassForm>({
     initialValues: {
@@ -25,6 +27,13 @@ export const PassForm = () => {
 
   return (
     <Styled.Form onSubmit={formik.handleSubmit}>
+      <TextField
+        label="Your Email"
+        value={isFetchingUser ? 'Loading...' : data?.email}
+        InputProps={{
+          readOnly: true
+        }}
+      />
       <TextField
         fullWidth
         id="oldPassword"

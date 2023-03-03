@@ -1,4 +1,4 @@
-export enum ValuName {
+export enum ValueName {
   PRIVATE = 'private',
   COMPLETE = 'complete'
 }
