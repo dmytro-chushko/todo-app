@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
+import { useInView } from 'react-intersection-observer';
 import { TodoCard } from '../todo-card';
 import { useGetTodo } from '../../../common/hooks/get-all-todo.hook';
 import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
@@ -14,10 +15,18 @@ interface ITodoContainer {
 }
 
 export const TodoContainer = ({ filter }: ITodoContainer) => {
+  const { inView, ref } = useInView();
   const isTablet = useMediaQuery(`(${MEDIA_KEYS.MIN_TABLET}) and (${MEDIA_KEYS.MAX_TABLET})`);
   const isDesktop = useMediaQuery(`(${MEDIA_KEYS.MIN_DESKTOP})`);
   const [page, setPage] = useState<number>(1);
-  const { data, isLoading } = useGetTodo(filter, page);
+  const [limit, setLimit] = useState<number>(5);
+  const { data, isLoading } = useGetTodo(filter, page, limit);
+
+  useEffect(() => {
+    if (inView) {
+      setLimit((prev) => prev + 1);
+    }
+  }, [inView]);
 
   if (isDesktop) {
     return (
@@ -30,22 +39,27 @@ export const TodoContainer = ({ filter }: ITodoContainer) => {
     );
   }
 
-  if (isTablet) return <TabletSlider data={data?.todos} isLoading={isLoading} />;
+  if (isTablet) {
+    return <TabletSlider data={data?.todos} isLoading={isLoading} setLimit={setLimit} />;
+  }
 
   return (
-    <Styled.TodoCardList>
-      {data &&
-        data.todos.map(({ _id, title, description, isPrivate, isCompleted }) => (
-          <TodoCard
-            key={_id}
-            id={_id}
-            title={title}
-            description={description}
-            isCompleted={isCompleted}
-            isPrivate={isPrivate}
-          />
-        ))}
-    </Styled.TodoCardList>
+    <>
+      <Styled.TodoCardList>
+        {data &&
+          data.todos.map(({ _id, title, description, isPrivate, isCompleted }) => (
+            <TodoCard
+              key={_id}
+              id={_id}
+              title={title}
+              description={description}
+              isCompleted={isCompleted}
+              isPrivate={isPrivate}
+            />
+          ))}
+      </Styled.TodoCardList>
+      <div ref={ref} />
+    </>
   );
 };
 export default TodoContainer;

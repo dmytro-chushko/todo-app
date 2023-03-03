@@ -16,9 +16,12 @@ export default class TodoService implements ITodoServices {
     userId: string,
     search?: string,
     status?: string,
-    page?: string
+    page?: string,
+    limit?: string
   ): Promise<IPaginatedTodo> {
-    const skip = (Number(page) - 1) * PAGINATION_LIMIT;
+    const numPage = Number(page);
+    const numLimit = limit ? Number(limit) : PAGINATION_LIMIT;
+    const skip = (numPage - 1) * numLimit;
     const filter: IFilterTodos = {};
 
     if (search) {
@@ -43,9 +46,8 @@ export default class TodoService implements ITodoServices {
     }
 
     const todos = await Todo.find(filter)
-      // .sort({ updateAt: -1, createAt: -1 })
       .skip(skip)
-      .limit(PAGINATION_LIMIT)
+      .limit(numLimit)
       .or([{ isPrivate: false }, { isPrivate: true, userId }]);
 
     const total = await Todo.countDocuments(filter).or([
@@ -53,7 +55,7 @@ export default class TodoService implements ITodoServices {
       { isPrivate: true, userId }
     ]);
 
-    const totalPages = Math.ceil(total / PAGINATION_LIMIT);
+    const totalPages = Math.ceil(total / numLimit);
 
     return { todos, total, totalPages };
   }

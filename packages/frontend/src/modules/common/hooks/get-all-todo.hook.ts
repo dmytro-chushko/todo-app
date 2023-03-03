@@ -10,12 +10,14 @@ interface IUseGetTodo {
   data?: IPaginatedTodos;
 }
 
-export const useGetTodo = (filter: IFilter, page: number): IUseGetTodo => {
+export const useGetTodo = (filter: IFilter, page: number, limit: number): IUseGetTodo => {
   const todoService = new TodoService();
   const { isLoading, data } = useQuery({
-    queryKey: [QUERY_KEYS.TODO, filter, page],
+    queryKey: [QUERY_KEYS.TODO, filter, page, limit],
     queryFn: () =>
-      todoService.getTodos(`search=${filter.search}&status=${filter.status}&page=${page}`),
+      todoService.getTodos(
+        `search=${filter.search}&status=${filter.status}&page=${page}&limit=${limit}`
+      ),
     onError: errorHandler
   });
 
