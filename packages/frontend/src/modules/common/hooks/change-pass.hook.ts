@@ -1,10 +1,8 @@
 import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
-import { QUERY_KEYS } from '../consts/app-keys.const';
-import { queryClient } from '../../react-query/qeury-client';
 import { errorHandler } from '../helpers/error-hendler';
 import { IPassForm } from '../types';
 import UserService from '../../services/user.service';
+import { todoSuccessHandler } from '../helpers/todo-success-handler';
 
 interface IUseChangePass {
   handleSubmit: (data: IPassForm) => void;
@@ -15,10 +13,7 @@ export const useChangePass = (): IUseChangePass => {
   const userService = new UserService();
   const { mutate, isLoading } = useMutation({
     mutationFn: userService.changePassword.bind(userService),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODO] });
-      toast.success('Your password has been changes');
-    },
+    onSuccess: () => todoSuccessHandler('Your password has been changes'),
     onError: errorHandler
   });
 

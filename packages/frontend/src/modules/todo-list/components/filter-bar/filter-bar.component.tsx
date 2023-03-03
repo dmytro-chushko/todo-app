@@ -12,48 +12,40 @@ interface IFilterBarProps {
 export const FilterBar = ({ setFilter }: IFilterBarProps) => {
   const [filterValue, setFilterValue] = useState<string | null>(FILTER_KEYS.ALL);
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setFilterValue(e.currentTarget.textContent);
+    const filterQuery = e.currentTarget.name;
+    setFilter((prev) => ({ ...prev, status: filterQuery }));
+  };
+
   return (
     <Styled.FilterBarContainer>
       <ButtonGroup variant="outlined" size="medium" fullWidth aria-label="todo filter bar">
         <Styled.FilterItem
           variant={filterValue === FILTER_KEYS.ALL ? 'contained' : 'outlined'}
-          onClick={(e) => {
-            setFilterValue(e.currentTarget.textContent);
-            setFilter((prev) => ({ ...prev, status: '' }));
-          }}
+          name=""
+          onClick={handleClick}
         >
           {FILTER_KEYS.ALL}
         </Styled.FilterItem>
         <Styled.FilterItem
           variant={filterValue === FILTER_KEYS.PRIVATE ? 'contained' : 'outlined'}
           name="isPrivate"
-          onClick={(e) => {
-            setFilterValue(e.currentTarget.textContent);
-            const filterQuery = e.currentTarget.name;
-            setFilter((prev) => ({ ...prev, status: filterQuery }));
-          }}
+          onClick={handleClick}
         >
           {FILTER_KEYS.PRIVATE}
         </Styled.FilterItem>
         <Styled.FilterItem
           variant={filterValue === FILTER_KEYS.PUBLIC ? 'contained' : 'outlined'}
           name="isPublic"
-          onClick={(e) => {
-            setFilterValue(e.currentTarget.textContent);
-            const filterQuery = e.currentTarget.name;
-            setFilter((prev) => ({ ...prev, status: filterQuery }));
-          }}
+          onClick={handleClick}
         >
           {FILTER_KEYS.PUBLIC}
         </Styled.FilterItem>
         <Styled.FilterItem
           variant={filterValue === FILTER_KEYS.COMPLETED ? 'contained' : 'outlined'}
           name="isCompleted"
-          onClick={(e) => {
-            setFilterValue(e.currentTarget.textContent);
-            const filterQuery = e.currentTarget.name;
-            setFilter((prev) => ({ ...prev, status: filterQuery }));
-          }}
+          onClick={handleClick}
         >
           {FILTER_KEYS.COMPLETED}
         </Styled.FilterItem>

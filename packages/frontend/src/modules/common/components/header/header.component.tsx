@@ -12,14 +12,12 @@ export const Header = () => {
   const isTablet = useMediaQuery(`(${MEDIA_KEYS.MIN_TABLET})`);
   const history = useHistory();
 
+  const handleClick = () => history.push(ROUTER_KEYS.TODO);
+
   return (
     <Styled.HeaderContainer>
       {!isTablet && (
-        <Button
-          purpose={PURPOSE.HEADER}
-          type="button"
-          onClick={() => history.push(ROUTER_KEYS.TODO)}
-        >
+        <Button purpose={PURPOSE.HEADER} type="button" onClick={handleClick}>
           Todo List
         </Button>
       )}
