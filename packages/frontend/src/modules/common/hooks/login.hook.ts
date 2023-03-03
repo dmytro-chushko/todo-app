@@ -1,10 +1,8 @@
 import { useMutation } from 'react-query';
-import { useHistory } from 'react-router-dom';
 import UserService from '../../services/user.service';
 import { IUserFormValues } from '../components/user-form/types';
-import { ROUTER_KEYS, TOKEN_STORAGE } from '../consts/app-keys.const';
 import { errorHandler } from '../helpers';
-import { IToken } from '../types';
+import { useSetToken } from './set-token';
 
 interface IUseLogin {
   handleSubmit: (data: IUserFormValues) => void;
@@ -12,14 +10,11 @@ interface IUseLogin {
 }
 
 export const useLogin = (): IUseLogin => {
-  const history = useHistory();
+  const successHendler = useSetToken();
   const userService = new UserService();
   const { mutate, isLoading } = useMutation({
     mutationFn: userService.login.bind(userService),
-    onSuccess: (data: IToken) => {
-      localStorage.setItem(TOKEN_STORAGE, data.token);
-      history.push(ROUTER_KEYS.TODO);
-    },
+    onSuccess: successHendler,
     onError: errorHandler
   });
 

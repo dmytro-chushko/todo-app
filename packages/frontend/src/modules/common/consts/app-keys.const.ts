@@ -63,8 +63,3 @@ export const FORM_INIT_VAL = {
 };
 
 export const TOKEN_STORAGE = 'token';
-
-// 'Input your email',
-//   INPUT_PASS: 'Input your password',
-//   CONF_PASS: 'Confirm your password',
-//   CREATE_PASS: 'Create your password'
