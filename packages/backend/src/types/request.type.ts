@@ -5,6 +5,7 @@ export interface CustomRequest<T> extends Request {
   query: {
     search?: string;
     status?: string;
+    page?: string;
   };
 }
 

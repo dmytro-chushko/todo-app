@@ -6,8 +6,8 @@ export class TodoController implements ITodoControllers {
   constructor(private todoService: TodoService) {}
 
   async getAllTodo(req: AuthCustomRequest<ITodo>): Promise<ITodo[]> {
-    const { search, status } = req.query;
-    const todos = await this.todoService.findAll(req.user._id, search, status);
+    const { search, status, page } = req.query;
+    const todos = await this.todoService.findAll(req.user._id, search, status, page);
 
     return todos;
   }
