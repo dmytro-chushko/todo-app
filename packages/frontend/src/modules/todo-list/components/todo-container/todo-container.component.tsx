@@ -3,12 +3,13 @@ import { useMediaQuery } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import { TodoCard } from '../todo-card';
 import { useGetTodo } from '../../../common/hooks/get-all-todo.hook';
-import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
+import { MEDIA_KEYS, QUERY_KEYS } from '../../../common/consts/app-keys.const';
 
 import * as Styled from './todo-container.styled';
 import { TabletSlider } from '../tablet-slider';
 import { DesktopTable } from '../desktop-table';
 import { IFilter } from '../../types/todo-list.types';
+import { queryClient } from '../../../react-query/qeury-client';
 
 interface ITodoContainer {
   filter: IFilter;
@@ -27,6 +28,10 @@ export const TodoContainer = ({ filter }: ITodoContainer) => {
       setLimit((prev) => prev + 1);
     }
   }, [inView]);
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER] });
+  }, []);
 
   if (isDesktop) {
     return (

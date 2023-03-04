@@ -29,6 +29,7 @@ export const EditTodo = ({ id, initialValues }: IEditTodo) => {
           isLoading={isLoading}
           handleSubmit={handleSubmit}
           initialValues={initialValues}
+          id={id}
         />
       </ModalWindow>
     </>

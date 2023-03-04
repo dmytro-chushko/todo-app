@@ -10,13 +10,15 @@ interface ISwitcherIsCompleted {
   isValue: boolean;
   isPageLoading?: boolean;
   valueName: ValueName;
+  disabled?: boolean;
 }
 
 export const SwitcherIsValue = ({
   id,
   isValue,
   valueName,
-  isPageLoading
+  isPageLoading,
+  disabled
 }: ISwitcherIsCompleted) => {
   const { handleSwitch, isLoading } = useSetIsComplete({
     id,
@@ -27,6 +29,6 @@ export const SwitcherIsValue = ({
   return isLoading || isPageLoading ? (
     <CircularProgress size="small" />
   ) : (
-    <Styled.TodoSwitch checked={isValue} onChange={handleSwitch} />
+    <Styled.TodoSwitch checked={isValue} onChange={handleSwitch} disabled={disabled} />
   );
 };

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Switch } from '@mui/material';
 import { COLORS, SIZES } from '../../../theme';
 
@@ -8,11 +8,16 @@ export const TodoSwitch = styled(Switch)`
     transition: all ease-in-out ${SIZES.TRANSITION.DURATION};
   }
 
-  :hover .css-1yjjitx-MuiSwitch-track,
-  input:focus .css-1yjjitx-MuiSwitch-track,
-  :hover .css-jsexje-MuiSwitch-thumb,
-  input:focus .css-jsexje-MuiSwitch-thumb {
-    background-color: ${COLORS.hoverButtonColor};
-    box-shadow: ${SIZES.BOX_SHADOW};
-  }
+  ${({ disabled }: { disabled?: boolean }) =>
+    !disabled &&
+    css`
+      :hover
+        .css-1yjjitx-MuiSwitch-track:not(.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-disabled),
+      input:focus .css-1yjjitx-MuiSwitch-track,
+      :hover .css-jsexje-MuiSwitch-thumb:not([disabled]),
+      input:focus .css-jsexje-MuiSwitch-thumb {
+        background-color: ${COLORS.hoverButtonColor};
+        box-shadow: ${SIZES.BOX_SHADOW};
+      }
+    `};
 `;

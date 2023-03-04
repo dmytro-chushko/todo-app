@@ -22,7 +22,7 @@ export const TodoItem = styled.li`
     flex-direction: column;
     justify-content: space-between;
     height: ${SIZES.CARD.HEIGHT};
-    padding: ${SPACES.m};
+    padding: ${SPACES.s};
     border: ${SIZES.CARD.BORDER} solid ${COLORS.secondary};
     border-radius: ${SIZES.BORDER_RADIUS};
 

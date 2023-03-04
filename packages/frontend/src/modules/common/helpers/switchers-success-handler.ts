@@ -10,6 +10,6 @@ export const switchersSuccessHandler = (valueName: ValueName, isValue: boolean) 
   }
 
   if (valueName === ValueName.PRIVATE) {
-    toast.success(`Your task has been switched to ${isValue ? 'Private' : 'Public'}`);
+    toast.success(`Your task has been switched to ${isValue ? 'Public' : 'Private'}`);
   }
 };

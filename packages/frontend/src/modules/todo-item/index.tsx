@@ -10,6 +10,7 @@ import { SwitchersBlock } from './components/switchers-block';
 import { queryClient } from '../react-query/qeury-client';
 
 import * as Styled from './todo-item.styled';
+import { useGetUser } from '../common/hooks/get-user.hook';
 
 interface IParams {
   id: string;
@@ -19,9 +20,11 @@ export const TodoItemPageContainer = () => {
   const { id } = useParams<IParams>();
   const history = useHistory();
   const { data, isLoading } = useGetTodoById(id);
+  const { data: user } = useGetUser();
 
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODO] });
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER] });
   }, []);
 
   return (
@@ -32,6 +35,8 @@ export const TodoItemPageContainer = () => {
       <Styled.DescriptionBody>{isLoading ? 'Loading' : data?.description}</Styled.DescriptionBody>
       <SwitchersBlock
         id={id}
+        userId={user?._id}
+        todoUserId={data?.userId}
         isCompleted={!!data?.isCompleted}
         isPrivate={!!data?.isPrivate}
         isLoading={isLoading}

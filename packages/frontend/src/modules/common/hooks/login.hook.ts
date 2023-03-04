@@ -2,6 +2,7 @@ import { useMutation } from 'react-query';
 import UserService from '../../services/user.service';
 import { IUserFormValues } from '../components/user-form/types';
 import { errorHandler } from '../helpers';
+import { IToken } from '../types';
 import { useSetToken } from './set-token';
 
 interface IUseLogin {
@@ -14,7 +15,7 @@ export const useLogin = (): IUseLogin => {
   const userService = new UserService();
   const { mutate, isLoading } = useMutation({
     mutationFn: userService.login.bind(userService),
-    onSuccess: successHendler,
+    onSuccess: (data: IToken) => successHendler(data),
     onError: errorHandler
   });
 

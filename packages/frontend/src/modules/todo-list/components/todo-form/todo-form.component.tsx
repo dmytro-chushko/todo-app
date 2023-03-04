@@ -8,12 +8,15 @@ import { PURPOSE } from '../../../common/components/button/types';
 import { FormPurpose } from '../../types/todo-list.types';
 
 import * as Styled from './todo-form.styled';
+import { useGetUser } from '../../../common/hooks/get-user.hook';
+import { useGetTodoById } from '../../../common/hooks/get-one-todo.hook';
 
 interface ITodoForm {
   initialValues?: ITodoFormValues;
   handleSubmit: (data: ITodoFormValues) => void;
   isLoading?: boolean;
   purpose: FormPurpose;
+  id?: string;
 }
 
 export const TodoForm = ({
@@ -24,8 +27,11 @@ export const TodoForm = ({
   },
   handleSubmit,
   isLoading,
-  purpose
+  purpose,
+  id = ''
 }: ITodoForm) => {
+  const { data } = useGetUser();
+  const { data: todo } = useGetTodoById(id);
   const formik = useFormik<ITodoFormValues>({
     initialValues,
     validationSchema: todoSchema,
@@ -66,6 +72,9 @@ export const TodoForm = ({
             name="isPrivate"
             checked={formik.values.isPrivate}
             onChange={formik.handleChange}
+            disabled={
+              purpose === FormPurpose.EDIT && !todo?.isPrivate && data?._id !== todo?.userId
+            }
           />
         }
         label="Private"

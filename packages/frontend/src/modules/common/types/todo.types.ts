@@ -26,6 +26,7 @@ export interface ITodo {
   description: string;
   isPrivate: boolean;
   isCompleted: boolean;
+  userId: string;
 }
 
 export interface IPaginatedTodos {

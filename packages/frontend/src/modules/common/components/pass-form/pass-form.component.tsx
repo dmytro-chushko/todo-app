@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { TextField } from '@mui/material';
 import { Button } from '../button';
@@ -9,6 +9,8 @@ import { useLogout } from '../../hooks/loout.hook';
 import { useGetUser } from '../../hooks/get-user.hook';
 
 import * as Styled from './pass-form.styled';
+import { queryClient } from '../../../react-query/qeury-client';
+import { QUERY_KEYS } from '../../consts/app-keys.const';
 
 export const PassForm = () => {
   const logout = useLogout();
@@ -24,6 +26,10 @@ export const PassForm = () => {
       actions.resetForm();
     }
   });
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USER] });
+  }, []);
 
   return (
     <Styled.Form onSubmit={formik.handleSubmit}>

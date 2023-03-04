@@ -7,10 +7,11 @@ interface IButtonProps {
   purpose?: PURPOSE;
   children: React.ReactNode;
   type: TYPE;
+  disabled?: boolean;
 }
 
-const Button = ({ purpose, type, children }: IButtonProps) => (
-  <Styled.Button purpose={purpose} type={type}>
+const Button = ({ purpose, type, children, disabled }: IButtonProps) => (
+  <Styled.Button purpose={purpose} type={type} disabled={disabled}>
     {children}
   </Styled.Button>
 );

@@ -44,10 +44,15 @@ export const Button = styled.button<IButton>`
   color: ${COLORS.white};
   transition: all ease-in-out ${SIZES.TRANSITION.DURATION};
 
-  :hover,
-  :focus {
+  :not([disabled]):hover,
+  :not([disabled]):focus {
     background-color: ${COLORS.hoverButtonColor};
     box-shadow: ${SIZES.BOX_SHADOW} ${COLORS.buttonShadow};
     outline: none;
+  }
+
+  :disabled {
+    cursor: auto;
+    opacity: 0.6;
   }
 `;

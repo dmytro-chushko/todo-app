@@ -48,7 +48,8 @@ export default class TodoService implements ITodoServices {
     const todos = await Todo.find(filter)
       .skip(skip)
       .limit(numLimit)
-      .or([{ isPrivate: false }, { isPrivate: true, userId }]);
+      .or([{ isPrivate: false }, { isPrivate: true, userId }])
+      .sort({ createdAt: 'desc' });
 
     const total = await Todo.countDocuments(filter).or([
       { isPrivate: false },
