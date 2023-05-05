@@ -63,7 +63,7 @@ export const TodoContainer = ({ filter }: ITodoContainer) => {
             />
           ))}
       </Styled.TodoCardList>
-      <div ref={ref} />
+      <Styled.Trigger ref={ref} />
     </>
   );
 };

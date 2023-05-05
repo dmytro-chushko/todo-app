@@ -28,9 +28,9 @@ export const UserForm = ({ purpose, handleSubmit, isLoading }: IUserFormProps) =
       confPass: FORM_INIT_VAL.CONF_PASS
     },
     validationSchema: userSchema,
-    onSubmit: (values, actions) => {
+    onSubmit: (values) => {
       handleSubmit(values);
-      actions.resetForm();
+      // if (purpose === UserFormPurpose.REGISTER) actions.resetForm();
     }
   });
 

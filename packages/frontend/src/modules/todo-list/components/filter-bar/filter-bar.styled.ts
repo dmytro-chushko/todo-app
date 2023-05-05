@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '@mui/material';
-import { FONTS, SIZES } from '../../../theme';
+import { COLORS, FONTS, SIZES } from '../../../theme';
 import { MEDIA_KEYS } from '../../../common/consts/app-keys.const';
 
 export const FilterBarContainer = styled.div`
@@ -11,6 +11,13 @@ export const FilterBarContainer = styled.div`
   button {
     font-size: ${FONTS.SIZES.mobileOperationsBar};
     text-transform: capitalize;
+    transition: all ease-in-out ${SIZES.TRANSITION.DURATION};
+
+    :hover {
+      color: ${COLORS.white};
+      background-color: ${COLORS.hoverButtonColor};
+      border: none;
+    }
   }
 `;
 

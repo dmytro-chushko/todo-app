@@ -1,4 +1,5 @@
 import { Response, Request, NextFunction } from 'express';
+import { HttpError } from 'http-errors';
 
 export const tryCatchMiddleware =
   <T, U>(handler: (req: T, res: Response, next: NextFunction) => Promise<U>) =>
@@ -8,6 +9,8 @@ export const tryCatchMiddleware =
 
       res.send(result);
     } catch (error) {
-      next(error);
+      if (error instanceof HttpError) {
+        next(error);
+      }
     }
   };

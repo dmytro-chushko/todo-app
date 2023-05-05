@@ -10,6 +10,7 @@ import passport from 'passport';
 import AppRouter from './routes';
 import connectDB from './config/database';
 import { jwtStrategy } from './strategies/jwt.strategy';
+import { errorHandler } from './middlewares/error-handler.middleware';
 
 const app = express();
 const router = new AppRouter(app);
@@ -25,6 +26,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.init();
+
+app.use(errorHandler);
 
 // TODO: Move that to model GraphQL
 const schema = buildSchema(`
